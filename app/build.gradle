@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace 'com.example.savedcards'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.savedcards"
-        minSdk 21
-        targetSdk 32
+        minSdk 23
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -63,8 +63,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.1.1'
 
     // Navigation Dependencies
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
 
     // View Pager Dependencies
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
