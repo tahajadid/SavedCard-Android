@@ -8,7 +8,18 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.savedcards.ui.SplashFragment"
+        android:name="com.example.savedcards.ui.splashScreen.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.savedcards.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/addCardFragment"
+        android:name="com.example.savedcards.ui.addNewCard.AddCardFragment"
+        android:label="fragment_add_card"
+        tools:layout="@layout/fragment_add_card" />
+
 </navigation>

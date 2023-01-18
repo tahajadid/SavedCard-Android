@@ -69,4 +69,8 @@ dependencies {
     // View Pager Dependencies
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
+    // gson converter Dependencies
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+
 }
