@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.savedcards.R
 import com.example.savedcards.databinding.FragmentHomeBinding
 
@@ -29,6 +30,7 @@ class HomeFragment : Fragment() {
             false
         )
 
+        findNavController().navigate(R.id.addCardFragment)
         return binding.root
     }
 }
