@@ -18,7 +18,6 @@ class CarouselCardAdapter(private val carouselDataList: ArrayList<String>) :
     }
 
     override fun onBindViewHolder(holder: CarouselItemViewHolder, position: Int) {
-        val textView = holder.itemView.findViewById<TextView>(R.id.textview)
         val bgView = holder.itemView.findViewById<View>(R.id.view_bg)
         when (position){
             0 -> bgView.setBackgroundResource(R.drawable.card_bg_one)
@@ -27,7 +26,8 @@ class CarouselCardAdapter(private val carouselDataList: ArrayList<String>) :
             3 -> bgView.setBackgroundResource(R.drawable.card_bg_four)
             else -> bgView.setBackgroundResource(R.drawable.card_bg_five)
         }
-        textView.text = carouselDataList[position]
+        //val textView = holder.itemView.findViewById<TextView>(R.id.textview)
+        //textView.text = carouselDataList[position]
     }
 
 
