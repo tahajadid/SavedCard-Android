@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_alignParentBottom="true"
-android:fitsSystemWindows="true"
-tools:context=".ui.addNewCard.addInfo.AddInfoCardFragment">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_alignParentBottom="true"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.addNewCard.addInfo.AddInfoCardFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,40 +14,25 @@ tools:context=".ui.addNewCard.addInfo.AddInfoCardFragment">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent">
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="6dp"
-            android:overScrollMode="never"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
+
+        <TextView
+            android:id="@+id/enter_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="إنشاء حساب للتاجر"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/enter_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="إنشاء حساب للتاجر"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/enter_info_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="المرجو إدخال المعلومات الخاصة بالتاجر"
-
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/enter_info" />
+        <TextView
+            android:id="@+id/enter_info_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="المرجو إدخال المعلومات الخاصة بالتاجر"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/enter_info" />
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/second_name_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -85,19 +69,19 @@ tools:context=".ui.addNewCard.addInfo.AddInfoCardFragment">
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/second_name_error"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:lineHeight="18sp"
-                    android:paddingEnd="26dp"
-                    android:text="Test 4"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/second_name_container" />
+        <TextView
+            android:id="@+id/second_name_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:lineHeight="18sp"
+            android:paddingEnd="26dp"
+            android:text="Test 4"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/second_name_container" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/first_name_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -133,14 +117,6 @@ tools:context=".ui.addNewCard.addInfo.AddInfoCardFragment">
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.core.widget.NestedScrollView>
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
