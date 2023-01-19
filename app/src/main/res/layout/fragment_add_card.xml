@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipChildren="false"
     android:background="@color/cyan_50"
+    android:clipChildren="false"
     android:clipToPadding="false"
-    tools:context=".ui.addNewCard.AddCardFragment">
-
+    tools:context=".ui.addNewCard.chooseTheme.AddCardFragment">
 
 
     <androidx.viewpager2.widget.ViewPager2
@@ -20,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/preview_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -28,6 +27,44 @@
         app:layout_constraintBottom_toBottomOf="@+id/view_pager"
         app:layout_constraintEnd_toEndOf="@+id/view_pager"
         app:layout_constraintStart_toStartOf="@+id/view_pager"
-        app:layout_constraintTop_toTopOf="@+id/view_pager" />
+        app:layout_constraintTop_toTopOf="@+id/view_pager" >
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shadowColor="@color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="3"
+            android:textAllCaps="true"
+            android:fontFamily="@font/ocrregular"
+            android:text="5321 0667 0998 09932"
+            android:textColor="#EFEFEF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/chip_sim" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,8 +18,13 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/addCardFragment"
-        android:name="com.example.savedcards.ui.addNewCard.AddCardFragment"
+        android:name="com.example.savedcards.ui.addNewCard.chooseTheme.AddCardFragment"
         android:label="fragment_add_card"
         tools:layout="@layout/fragment_add_card" />
+    <fragment
+        android:id="@+id/addInfoCardFragment"
+        android:name="com.example.savedcards.ui.addNewCard.addInfo.AddInfoCardFragment"
+        android:label="fragment_add_info_card"
+        tools:layout="@layout/fragment_add_info_card" />
 
 </navigation>

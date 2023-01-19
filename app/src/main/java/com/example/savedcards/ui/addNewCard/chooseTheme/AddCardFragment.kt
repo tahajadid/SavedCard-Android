@@ -1,4 +1,4 @@
-package com.example.savedcards.ui.addNewCard
+package com.example.savedcards.ui.addNewCard.chooseTheme
 
 import android.content.res.Resources
 import android.os.Bundle
