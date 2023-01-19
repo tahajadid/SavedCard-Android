@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Add Custom Colors -->
+    <color name="cyan_25">#EDFBFD</color>
     <color name="cyan_50">#e0f7fa</color>
     <color name="cyan_100">#b2ebf2</color>
     <color name="cyan_200">#80deea</color>
@@ -19,5 +20,9 @@
     <color name="cyan_700">#0097a7</color>
     <color name="cyan_800">#00838f</color>
     <color name="cyan_900">#006064</color>
+
+
+    <!-- Add Error Colors -->
+    <color name="error">#DC3A07</color>
 
 </resources>
