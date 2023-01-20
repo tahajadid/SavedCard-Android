@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/cyan_25"
-        android:paddingHorizontal="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent">
@@ -32,6 +31,7 @@
             android:id="@+id/back_view"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/back_icon_bg"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/tulisans"
             android:text="Fill The card information"
-            android:textColor="@color/white"
+            android:textColor="@color/cyan_800"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/back_view"
             app:layout_constraintStart_toEndOf="@+id/back_view"
@@ -76,6 +76,7 @@
             android:id="@+id/next_view"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginHorizontal="16dp"
             android:background="@drawable/back_icon_bg"
             app:layout_constraintBottom_toBottomOf="@+id/next_click_view"
             app:layout_constraintEnd_toEndOf="parent"
@@ -91,31 +92,31 @@
             app:layout_constraintStart_toStartOf="@+id/next_view"
             app:layout_constraintTop_toTopOf="@+id/next_view" />
 
-
         <TextView
             android:id="@+id/choose_theme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/tulisans"
-            android:text="Choose Theme"
-            android:textColor="@color/cyan_800"
+            android:text="Next"
+            android:textColor="@color/white"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@+id/next_click_view"
             app:layout_constraintEnd_toStartOf="@+id/next_view"
             app:layout_constraintTop_toTopOf="@+id/next_click_view" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/second_name_container"
+            android:id="@+id/name_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginHorizontal="16dp"
             android:background="@drawable/background_text_fields"
             app:layout_constraintTop_toBottomOf="@+id/enter_info"
             tools:layout_editor_absoluteX="16dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/second_name_layout"
+                android:id="@+id/name_layout"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:hint="Full Name"
@@ -130,7 +131,7 @@
 
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/second_name_editText"
+                    android:id="@+id/name_editText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
@@ -144,16 +145,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/first_name_container"
+            android:id="@+id/card_name_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
             android:background="@drawable/background_text_fields"
-            app:layout_constraintTop_toBottomOf="@+id/second_name_container"
+            app:layout_constraintTop_toBottomOf="@+id/name_container"
             tools:layout_editor_absoluteX="16dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/first_name_layout"
+                android:id="@+id/card_name_layout"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:hint="Card Number"
@@ -167,11 +169,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/first_name_editText"
+                    android:id="@+id/card_name_editText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
                     android:inputType="number"
+                    android:maxLength="16"
                     android:textAlignment="viewStart"
                     android:textDirection="ltr" />
 
@@ -185,10 +188,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginStart="16dp"
             android:background="@drawable/background_text_fields"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/first_name_container">
+            app:layout_constraintTop_toBottomOf="@+id/card_name_container">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/cvv_layout"
@@ -209,7 +213,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/white"
-                    android:inputType="text"
+                    android:inputType="number"
+                    android:maxLength="3"
                     android:textAlignment="viewStart"
                     android:textDirection="ltr" />
 
@@ -222,11 +227,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="2dp"
+            android:layout_marginHorizontal="16dp"
             android:background="@drawable/background_text_fields"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/first_name_container">
+            app:layout_constraintTop_toBottomOf="@+id/card_name_container">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/month_layout"
@@ -261,11 +266,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/background_text_fields"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@+id/first_name_container">
+            app:layout_constraintTop_toBottomOf="@+id/card_name_container">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/year_layout"
@@ -295,6 +301,56 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="Add Rib"
+            android:textSize="22dp"
+            android:textColor="@color/cyan_800"
+            android:fontFamily="@font/tulisans"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvv_container" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rib_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/background_text_fields"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rib_layout"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:hint="Rib Number"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColorHint="#9C9FA5"
+                app:expandedHintEnabled="false"
+                app:hintTextColor="#9C9FA5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/rib_editText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:inputType="text"
+                    android:textDirection="ltr" />
+
+                <requestFocus />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
@@ -308,6 +364,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.7" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/credit_card_icon"
+            android:scaleType="fitXY"
+            android:layout_marginStart="-60dp"
+            android:alpha="0.1"
+            android:rotation="-25"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
