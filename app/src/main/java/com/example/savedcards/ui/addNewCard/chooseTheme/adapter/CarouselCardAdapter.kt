@@ -1,4 +1,4 @@
-package com.example.savedcards.ui.addNewCard.chooseTheme
+package com.example.savedcards.ui.addNewCard.chooseTheme.adapter
 
 import android.view.LayoutInflater
 import android.view.View

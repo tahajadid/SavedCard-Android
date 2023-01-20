@@ -16,12 +16,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        activityInstance = this
 
         // initialize ModelPreferencesManager
         ModelPreferencesManager.with(this.application)
+
+        setContentView(R.layout.activity_main)
+
+        activityInstance = this
 
         // initialize FirebaseApp
         FirebaseApp.initializeApp(this.application)

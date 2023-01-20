@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/addCardFragment"
-        android:name="com.example.savedcards.ui.addNewCard.chooseTheme.AddCardFragment"
+        android:name="com.example.savedcards.ui.addNewCard.chooseTheme.ChooseThemeFragment"
         android:label="fragment_add_card"
         tools:layout="@layout/fragment_add_card" />
     <fragment

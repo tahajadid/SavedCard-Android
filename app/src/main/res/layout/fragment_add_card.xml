@@ -4,20 +4,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cyan_50"
+    android:background="@color/cyan_25"
     android:clipChildren="false"
     android:clipToPadding="false"
-    tools:context=".ui.addNewCard.chooseTheme.AddCardFragment">
+    tools:context=".ui.addNewCard.chooseTheme.ChooseThemeFragment">
 
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-60dp"
+        android:alpha="0.1"
+        android:rotation="-25"
+        android:scaleType="fitXY"
+        android:src="@drawable/credit_card_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Top View-->
+
+    <View
+        android:id="@+id/back_click_view"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="-10dp"
+        android:background="@drawable/back_icon_top_bg"
+        app:layout_constraintEnd_toEndOf="@+id/enter_info"
+        app:layout_constraintStart_toStartOf="@+id/back_view"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/back_view"
+        android:layout_width="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/back_icon_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/back_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/back_view"
+        app:layout_constraintEnd_toEndOf="@+id/back_view"
+        app:layout_constraintStart_toStartOf="@+id/back_view"
+        app:layout_constraintTop_toTopOf="@+id/back_view" />
+
+    <TextView
+        android:id="@+id/enter_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/tulisans"
+        android:text="Choose a custom theme"
+        android:textColor="@color/cyan_800"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/back_view"
+        app:layout_constraintStart_toEndOf="@+id/back_view"
+        app:layout_constraintTop_toTopOf="@+id/back_view" />
+
+    <!-- Bottom View-->
+    <View
+        android:id="@+id/next_click_view"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="-10dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/next_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/next_view"
+        app:layout_constraintStart_toStartOf="@+id/choose_theme" />
+
+    <View
+        android:id="@+id/next_view"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/back_icon_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/next_click_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/next_click_view" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/next_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/next_view"
+        app:layout_constraintEnd_toEndOf="@+id/next_view"
+        app:layout_constraintStart_toStartOf="@+id/next_view"
+        app:layout_constraintTop_toTopOf="@+id/next_view" />
+
+    <TextView
+        android:id="@+id/choose_theme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/tulisans"
+        android:text="Next"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/next_click_view"
+        app:layout_constraintEnd_toStartOf="@+id/next_view"
+        app:layout_constraintTop_toTopOf="@+id/next_click_view" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/next_click_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/back_click_view"
+        app:layout_constraintVertical_bias="0.35000002" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/preview_view"
@@ -34,25 +138,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.65" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:shadowColor="@color/black"
-            android:shadowDx="1.5"
-            android:shadowDy="1.3"
-            android:shadowRadius="3"
-            android:textAllCaps="true"
-            android:fontFamily="@font/ocrregular"
-            android:text="5321 0667 0998 09932"
-            android:textColor="#EFEFEF"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+            app:layout_constraintGuide_percent="0.5" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -64,6 +150,110 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/chip_sim" />
+
+        <ImageView
+            android:id="@+id/mastercard"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:alpha="0.8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/mastercard_logo" />
+
+        <TextView
+            android:id="@+id/card_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/ocrregular"
+            android:shadowColor="@color/black"
+            android:shadowDx="2.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="3"
+            android:text="5321 0667 0998 09932"
+            android:textAllCaps="true"
+            android:textColor="#EFEFEF"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+        <TextView
+            android:id="@+id/card_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/ocrregular"
+            android:shadowColor="@color/black"
+            android:shadowDx="2.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="3"
+            android:text="JADID TAHA"
+            android:textAllCaps="true"
+            android:textColor="#EFEFEF"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/card_date" />
+
+        <TextView
+            android:id="@+id/card_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/ocrregular"
+            android:shadowColor="@color/black"
+            android:shadowDx="2.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="3"
+            android:text="02/32"
+            android:textAllCaps="true"
+            android:textColor="#EFEFEF"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/card_number"
+            app:layout_constraintTop_toBottomOf="@+id/card_number" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- No existing Cards-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/upload_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="12dp"
+        android:background="@drawable/upload_theme_bg"
+        app:layout_constraintEnd_toEndOf="@+id/view_pager"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_pager">
+
+
+        <TextView
+            android:id="@+id/upload_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/tulisans"
+            android:text="Upload your theme"
+            android:textColor="@color/cyan_800"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/upload_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

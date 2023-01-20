@@ -29,7 +29,7 @@ class SplashFragment : Fragment() {
             container,
             false
         )
-        findNavController().navigate(R.id.addCardFragment)
+        findNavController().navigate(R.id.homeFragment)
 
         return binding.root
     }
