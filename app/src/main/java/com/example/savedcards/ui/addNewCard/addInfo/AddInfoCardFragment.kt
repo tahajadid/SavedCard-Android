@@ -11,6 +11,7 @@ import com.example.savedcards.R
 import com.example.savedcards.data.CardInfo
 import com.example.savedcards.databinding.FragmentAddInfoCardBinding
 import com.example.savedcards.util.currentCard
+import com.example.savedcards.util.numberCardUtil.ScratchCardUtil
 
 class AddInfoCardFragment : Fragment() {
 
@@ -38,6 +39,8 @@ class AddInfoCardFragment : Fragment() {
     }
 
     private fun initComponents() {
+        ScratchCardUtil.setSeparatorFormatNumber(binding.cardNumberEditText)
+
         binding.nextClickView.setOnClickListener {
             fillCardInfo()
             findNavController().navigate(R.id.addCardFragment)
@@ -46,11 +49,16 @@ class AddInfoCardFragment : Fragment() {
         binding.backClickView.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        binding.checkBox.setOnClickListener { view ->
+            if (binding.checkBox.isChecked) binding.ribContainer.visibility = View.VISIBLE
+            else binding.ribContainer.visibility = View.GONE
+        }
     }
 
     private fun fillCardInfo() {
         currentCard = CardInfo(
-            binding.cardNameEditText.text.toString(),
+            binding.cardNumberEditText.text.toString(),
             binding.nameEditText.text.toString(),
             binding.monthEditText.text.toString(),
             binding.yearEditText.text.toString(),
