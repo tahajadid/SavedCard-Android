@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savedcards.R
 import com.example.savedcards.data.CardInfo
+import com.example.savedcards.util.numberCardUtil.ScratchCardUtil
 
 class ListCardAdapter(
     private val context: Context?,
@@ -34,9 +35,11 @@ class ListCardAdapter(
             date = itemView.findViewById(R.id.card_date)
             previewView = itemView.findViewById(R.id.preview_view)
 
-            number.text = item.number
+            number.text = ScratchCardUtil.addSeparatorToNumber(item.number.toString())
             name.text = item.fullName
-            date.text = item.expirationMonth + "/" + item.expirationYear
+            date.text = item.expirationMonth +
+                "/" +
+                item.expirationYear.toString().drop(2)
 
             when (item.themeId?.toInt()) {
                 0 -> previewView.setBackgroundResource(R.drawable.card_bg_one)
