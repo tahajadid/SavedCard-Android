@@ -1,10 +1,12 @@
 package com.example.savedcards.ui.addNewCard.chooseTheme
 
+import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +28,9 @@ class ChooseThemeFragment : Fragment() {
     lateinit var viewPager: ViewPager2
     lateinit var nextClickView: View
     lateinit var backClickView: View
+    lateinit var numberTv: TextView
+    lateinit var nameTv: TextView
+    lateinit var dateTv: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,12 +47,16 @@ class ChooseThemeFragment : Fragment() {
         viewPager = root.findViewById(R.id.view_pager)
         nextClickView = root.findViewById(R.id.next_click_view)
         backClickView = root.findViewById(R.id.back_click_view)
+        numberTv = root.findViewById(R.id.card_number)
+        nameTv = root.findViewById(R.id.card_name)
+        dateTv = root.findViewById(R.id.card_date)
 
-        initComponents()
+        listenToView()
         return root
     }
 
-    private fun initComponents() {
+    private fun listenToView() {
+        fillInformation()
         nextClickView.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
 
@@ -67,6 +76,15 @@ class ChooseThemeFragment : Fragment() {
         }
 
         initViewPager()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun fillInformation() {
+        numberTv.text = currentCard!!.number.toString()
+        nameTv.text = currentCard!!.fullName.toString()
+        dateTv.text = currentCard!!.expirationMonth.toString() +
+                "/" +
+                currentCard!!.expirationYear.toString().drop(2)
     }
 
     private fun initViewPager() {
