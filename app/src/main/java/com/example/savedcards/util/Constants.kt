@@ -10,15 +10,15 @@ object Constants {
         Shortcut(
             "Scan your card",
             "0",
-            true
+            false
         ),
         Shortcut(
             "Secure the app access",
             "1",
-            false
+            true
         ),
         Shortcut(
-            "Scan your card",
+            "Application info",
             "2",
             false
         )

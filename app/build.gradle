@@ -73,4 +73,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
 
 
+    // SpicyAnimation
+    implementation 'com.github.tahajadid:SpicyAnimation:0.1.0'
+
 }

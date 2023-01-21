@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.savedcards.MainActivity
 import com.example.savedcards.R
 import com.example.savedcards.data.CardInfo
 import com.example.savedcards.util.numberCardUtil.ScratchCardUtil
@@ -47,6 +48,10 @@ class ListCardAdapter(
                 2 -> previewView.setBackgroundResource(R.drawable.card_bg_three)
                 3 -> previewView.setBackgroundResource(R.drawable.card_bg_four)
                 else -> previewView.setBackgroundResource(R.drawable.card_bg_five)
+            }
+
+            previewView.setOnClickListener {
+                MainActivity.navController.navigate(R.id.cardDetailsFragment)
             }
         }
     }
