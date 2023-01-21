@@ -10,8 +10,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.doOnEnd
 import androidx.databinding.DataBindingUtil
@@ -94,10 +92,8 @@ class CardDetailsFragment : Fragment() {
             flipOutAnimatorSet.doOnEnd {
                 frontView.visibility = View.VISIBLE
             }
-
         } catch (e: java.lang.Exception) {
             Log.d("ERRORaNI", "Error Animation")
         }
     }
-
 }

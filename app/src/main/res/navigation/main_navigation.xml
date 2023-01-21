@@ -33,8 +33,13 @@
         tools:layout="@layout/fragment_card_details" />
     <fragment
         android:id="@+id/secureAppFragment"
-        android:name="com.example.savedcards.SecureAppFragment"
+        android:name="com.example.savedcards.ui.secureApp.SecureAppFragment"
         android:label="fragment_secure_app"
         tools:layout="@layout/fragment_secure_app" />
+    <fragment
+        android:id="@+id/scanCardFragment"
+        android:name="com.example.savedcards.ui.scanCard.ScanCardFragment"
+        android:label="fragment_scan_card"
+        tools:layout="@layout/fragment_scan_card" />
 
 </navigation>
