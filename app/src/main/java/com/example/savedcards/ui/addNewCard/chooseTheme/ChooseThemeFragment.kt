@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +23,7 @@ import com.example.savedcards.util.Constants.MY_CARDS
 import com.example.savedcards.util.currentCard
 import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 import com.example.savedcards.util.mySessionCards
+import com.google.android.material.textfield.TextInputEditText
 import kotlin.math.abs
 
 class ChooseThemeFragment : Fragment() {
@@ -32,10 +35,17 @@ class ChooseThemeFragment : Fragment() {
     lateinit var nameTv: TextView
     lateinit var dateTv: TextView
 
+    lateinit var cardTitle: TextInputEditText
+    lateinit var bgTitle: ConstraintLayout
+    lateinit var cardTitleError: TextView
+
+    var errorFlag = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,6 +61,10 @@ class ChooseThemeFragment : Fragment() {
         nameTv = root.findViewById(R.id.card_name)
         dateTv = root.findViewById(R.id.card_date)
 
+        cardTitle = root.findViewById(R.id.label_editText)
+        bgTitle = root.findViewById(R.id.label_container)
+        cardTitleError = root.findViewById(R.id.error_card_title)
+
         listenToView()
         return root
     }
@@ -58,24 +72,33 @@ class ChooseThemeFragment : Fragment() {
     private fun listenToView() {
         fillInformation()
         nextClickView.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-
-            val myCards = ModelPreferencesManager.get<Cards>(MY_CARDS)
-            if (myCards == null) {
-                // First init
-                mySessionCards = Cards(arrayListOf())
-            } else mySessionCards = myCards
-
-            mySessionCards!!.listOfCards.add(currentCard!!)
-            ModelPreferencesManager
-                .put<Cards>(mySessionCards as Cards, MY_CARDS)
+            if (cardTitle.text.isNullOrEmpty()) showError()
+            else navigateToSuccess()
         }
 
         backClickView.setOnClickListener {
             findNavController().navigateUp()
         }
 
+        cardTitle.addTextChangedListener {
+            if (errorFlag) initView()
+        }
+
         initViewPager()
+    }
+
+    private fun navigateToSuccess() {
+        findNavController().navigate(R.id.homeFragment)
+
+        val myCards = ModelPreferencesManager.get<Cards>(MY_CARDS)
+        if (myCards == null) {
+            // First init
+            mySessionCards = Cards(arrayListOf())
+        } else mySessionCards = myCards
+
+        mySessionCards!!.listOfCards.add(currentCard!!)
+        ModelPreferencesManager
+            .put<Cards>(mySessionCards as Cards, MY_CARDS)
     }
 
     @SuppressLint("SetTextI18n")
@@ -83,8 +106,8 @@ class ChooseThemeFragment : Fragment() {
         numberTv.text = currentCard!!.number.toString()
         nameTv.text = currentCard!!.fullName.toString()
         dateTv.text = currentCard!!.expirationMonth.toString() +
-                "/" +
-                currentCard!!.expirationYear.toString().drop(2)
+            "/" +
+            currentCard!!.expirationYear.toString().drop(2)
     }
 
     private fun initViewPager() {
@@ -132,5 +155,17 @@ class ChooseThemeFragment : Fragment() {
                 super.onPageScrollStateChanged(state)
             }
         })
+    }
+
+    private fun initView() {
+        bgTitle.setBackgroundResource(R.drawable.background_text_fields)
+        errorFlag = false
+        cardTitleError.visibility = View.GONE
+    }
+
+    private fun showError() {
+        errorFlag = true
+        cardTitleError.visibility = View.VISIBLE
+        bgTitle.setBackgroundResource(R.drawable.background_text_fields_error)
     }
 }
