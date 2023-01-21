@@ -1,4 +1,4 @@
-package com.example.savedcards.ui.home.adapter
+package com.example.savedcards.ui.home.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
