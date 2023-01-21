@@ -1,32 +1,23 @@
 package com.example.savedcards.util
 
-import com.example.savedcards.data.CardInfo
+import com.example.savedcards.data.Shortcut
 
 object Constants {
-    const val Test = "Test"
 
     const val MY_CARDS = "MY_CARDS"
 
-    const val CARD_INFO = "CARD_INFO"
-
-    val LIST_OF_CARDS = arrayListOf(
-        CardInfo(
-            "1344 3444 3442 0909",
-            "JADID TAHA",
-            "01",
-            "24",
-            "1",
-            "1",
+    val LIST_OF_SHORTCUTS = arrayListOf(
+        Shortcut(
+            "Scan your card",
+            "0"
+        ),
+        Shortcut(
+            "Secure the app access",
             "1"
         ),
-        CardInfo(
-            "1344 3444 3442 0909",
-            "JADID TAHA",
-            "01",
-            "24",
-            "1",
-            "1",
-            "1"
+        Shortcut(
+            "Scan your card",
+            "2"
         )
     )
 }

@@ -12,7 +12,9 @@ import com.example.savedcards.R
 import com.example.savedcards.data.CardInfo
 import com.example.savedcards.data.Cards
 import com.example.savedcards.databinding.FragmentHomeBinding
-import com.example.savedcards.ui.home.adapter.ListCardAdapter
+import com.example.savedcards.ui.home.adapters.ListCardAdapter
+import com.example.savedcards.ui.home.adapters.ListShortcutAdapter
+import com.example.savedcards.util.Constants.LIST_OF_SHORTCUTS
 import com.example.savedcards.util.Constants.MY_CARDS
 import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 import com.example.savedcards.util.mySessionCards
@@ -21,6 +23,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var listCardAdapter: ListCardAdapter
+    private lateinit var listShortcutAdapter: ListShortcutAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +46,28 @@ class HomeFragment : Fragment() {
     }
 
     private fun initComponent() {
+        initListCards()
+        initListShortcuts()
+
+        binding.addView.setOnClickListener {
+            findNavController().navigate(R.id.addInfoCardFragment)
+        }
+
+        binding.emptyListView.setOnClickListener {
+            findNavController().navigate(R.id.addInfoCardFragment)
+        }
+    }
+
+    private fun initListShortcuts() {
+        listShortcutAdapter = ListShortcutAdapter(context, LIST_OF_SHORTCUTS)
+
+        binding.shortcutList.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = listShortcutAdapter
+        }
+    }
+
+    private fun initListCards() {
         binding.emptyListView.visibility = View.VISIBLE
         val myCards = ModelPreferencesManager.get<Cards>(MY_CARDS)
         if (myCards != null) {
@@ -62,14 +87,6 @@ class HomeFragment : Fragment() {
                     adapter = listCardAdapter
                 }
             }
-        }
-
-        binding.addView.setOnClickListener {
-            findNavController().navigate(R.id.addInfoCardFragment)
-        }
-
-        binding.emptyListView.setOnClickListener {
-            findNavController().navigate(R.id.addInfoCardFragment)
         }
     }
 
