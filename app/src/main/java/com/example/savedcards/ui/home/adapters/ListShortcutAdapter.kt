@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.savedcards.MainActivity
 import com.example.savedcards.R
 import com.example.savedcards.data.Shortcut
 
@@ -22,6 +24,7 @@ class ListShortcutAdapter(
 
         lateinit var title: TextView
         lateinit var icon: ImageView
+        lateinit var container: ConstraintLayout
 
         /**
          * Show the data in the views
@@ -29,6 +32,7 @@ class ListShortcutAdapter(
         fun bindView(item: Shortcut, position: Int) {
             title = itemView.findViewById(R.id.shortcut_title)
             icon = itemView.findViewById(R.id.shortcut_icon)
+            container = itemView.findViewById(R.id.container_bg)
 
             title.text = item.title
             when (item.iconId?.toInt()) {
@@ -37,6 +41,22 @@ class ListShortcutAdapter(
                 2 -> icon.setImageResource(R.drawable.info_icon)
                 else -> icon.setImageResource(R.drawable.info_icon)
             }
+
+            if (item.isEnabled == true) {
+                container.setBackgroundResource(R.drawable.shortcut_bg)
+                container.setOnClickListener {
+                    when (item.iconId?.toInt()) {
+                        0 -> MainActivity.navController.navigate(R.id.addInfoCardFragment)
+                        1 -> MainActivity.navController.navigate(R.id.addInfoCardFragment)
+                        2 -> MainActivity.navController.navigate(R.id.addInfoCardFragment)
+                        else -> MainActivity.navController.navigate(R.id.addInfoCardFragment)
+                    }
+                }
+            } else {
+                container.setBackgroundResource(R.drawable.shortcuts_disabled_bg)
+                container.isEnabled = false
+            }
+
         }
     }
 

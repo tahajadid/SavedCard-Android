@@ -9,15 +9,18 @@ object Constants {
     val LIST_OF_SHORTCUTS = arrayListOf(
         Shortcut(
             "Scan your card",
-            "0"
+            "0",
+            true
         ),
         Shortcut(
             "Secure the app access",
-            "1"
+            "1",
+            false
         ),
         Shortcut(
             "Scan your card",
-            "2"
+            "2",
+            false
         )
     )
 }
