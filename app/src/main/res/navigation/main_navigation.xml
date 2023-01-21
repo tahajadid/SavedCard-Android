@@ -26,5 +26,15 @@
         android:name="com.example.savedcards.ui.addNewCard.addInfo.AddInfoCardFragment"
         android:label="fragment_add_info_card"
         tools:layout="@layout/fragment_add_info_card" />
+    <fragment
+        android:id="@+id/cardDetailsFragment"
+        android:name="com.example.savedcards.ui.cardDetails.CardDetailsFragment"
+        android:label="fragment_card_details"
+        tools:layout="@layout/fragment_card_details" />
+    <fragment
+        android:id="@+id/secureAppFragment"
+        android:name="com.example.savedcards.SecureAppFragment"
+        android:label="fragment_secure_app"
+        tools:layout="@layout/fragment_secure_app" />
 
 </navigation>
