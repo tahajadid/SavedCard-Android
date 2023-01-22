@@ -189,7 +189,7 @@ tools:context=".ui.home.HomeFragment">
         <View
             android:id="@+id/bottom_left_view"
             android:layout_width="120dp"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:background="@drawable/navigation_left_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -207,7 +207,7 @@ tools:context=".ui.home.HomeFragment">
         <View
             android:id="@+id/bottom_right_view"
             android:layout_width="120dp"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:background="@drawable/navigation_right_bg"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
