@@ -4,7 +4,6 @@ import com.example.savedcards.data.Shortcut
 
 object Constants {
 
-    const val MY_CARDS = "MY_CARDS"
     const val MASTERCARD_TYPE = "MASTERCARD_TYPE"
     const val VISACARD_TYPE = "VISACARD_TYPE"
 
@@ -25,4 +24,11 @@ object Constants {
             false
         )
     )
+
+    /**
+     * SaredPref Var:
+     */
+    const val MY_CARDS = "MY_CARDS"
+    const val APP_PIN_CODE = "APP_PIN_CODE"
+
 }
