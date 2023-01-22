@@ -88,17 +88,17 @@ class ChooseThemeFragment : Fragment() {
     }
 
     private fun navigateToSuccess() {
-        findNavController().navigate(R.id.homeFragment)
+        currentCard?.title = cardTitle.text.toString()
 
         val myCards = ModelPreferencesManager.get<Cards>(MY_CARDS)
         if (myCards == null) {
             // First init
             mySessionCards = Cards(arrayListOf())
         } else mySessionCards = myCards
-
         mySessionCards!!.listOfCards.add(currentCard!!)
         ModelPreferencesManager
             .put<Cards>(mySessionCards as Cards, MY_CARDS)
+        findNavController().navigate(R.id.homeFragment)
     }
 
     @SuppressLint("SetTextI18n")
@@ -124,7 +124,8 @@ class ChooseThemeFragment : Fragment() {
             "2",
             "3",
             "4",
-            "5"
+            "5",
+            "6"
         )
 
         viewPager.adapter = CarouselCardAdapter(demoData)
