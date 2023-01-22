@@ -3,7 +3,7 @@ package com.example.savedcards.data
 import com.google.gson.annotations.SerializedName
 
 data class CardInfo(
-    @SerializedName("name") var name: String? = null,
+    @SerializedName("title") var title: String? = null,
     @SerializedName("number") var number: String? = null,
     @SerializedName("fullName") var fullName: String? = null,
     @SerializedName("expirationMonth") var expirationMonth: String? = null,

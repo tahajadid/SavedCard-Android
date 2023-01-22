@@ -101,6 +101,6 @@ class HomeFragment : Fragment() {
         binding.cardList.visibility = View.VISIBLE
         binding.topLeftView.visibility = View.VISIBLE
         binding.topRightView.visibility = View.VISIBLE
-        binding.emptyListView.visibility = View.GONE
+        binding.emptyListView.visibility = View.INVISIBLE
     }
 }

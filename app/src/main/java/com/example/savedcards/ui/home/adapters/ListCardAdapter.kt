@@ -4,12 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savedcards.MainActivity
 import com.example.savedcards.R
 import com.example.savedcards.data.CardInfo
+import com.example.savedcards.util.Constants.MASTERCARD_TYPE
+import com.example.savedcards.util.currentCardSelected
 import com.example.savedcards.util.numberCardUtil.ScratchCardUtil
 
 class ListCardAdapter(
@@ -26,6 +29,7 @@ class ListCardAdapter(
         lateinit var name: TextView
         lateinit var date: TextView
         lateinit var previewView: ConstraintLayout
+        lateinit var typeCard: ImageView
 
         /**
          * Show the data in the views
@@ -35,6 +39,7 @@ class ListCardAdapter(
             name = itemView.findViewById(R.id.card_name)
             date = itemView.findViewById(R.id.card_date)
             previewView = itemView.findViewById(R.id.preview_view)
+            typeCard = itemView.findViewById(R.id.mastercard)
 
             number.text = ScratchCardUtil.addSeparatorToNumber(item.number.toString())
             name.text = item.fullName
@@ -47,12 +52,17 @@ class ListCardAdapter(
                 1 -> previewView.setBackgroundResource(R.drawable.card_bg_two)
                 2 -> previewView.setBackgroundResource(R.drawable.card_bg_three)
                 3 -> previewView.setBackgroundResource(R.drawable.card_bg_four)
-                else -> previewView.setBackgroundResource(R.drawable.card_bg_five)
+                4 -> previewView.setBackgroundResource(R.drawable.card_bg_five)
+                else -> previewView.setBackgroundResource(R.drawable.card_bg_six)
             }
 
             previewView.setOnClickListener {
+                currentCardSelected = item
                 MainActivity.navController.navigate(R.id.cardDetailsFragment)
             }
+
+            if(item.cardType == MASTERCARD_TYPE) typeCard.setImageResource(R.drawable.mastercard_logo)
+            else typeCard.setImageResource(R.drawable.visa_logo)
         }
     }
 

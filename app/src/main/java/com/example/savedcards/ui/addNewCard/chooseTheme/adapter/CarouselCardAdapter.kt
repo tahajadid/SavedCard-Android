@@ -23,7 +23,8 @@ class CarouselCardAdapter(private val carouselDataList: ArrayList<String>) :
             1 -> bgView.setBackgroundResource(R.drawable.card_bg_two)
             2 -> bgView.setBackgroundResource(R.drawable.card_bg_three)
             3 -> bgView.setBackgroundResource(R.drawable.card_bg_four)
-            else -> bgView.setBackgroundResource(R.drawable.card_bg_five)
+            4 -> bgView.setBackgroundResource(R.drawable.card_bg_five)
+            else -> bgView.setBackgroundResource(R.drawable.card_bg_six)
         }
         //val textView = holder.itemView.findViewById<TextView>(R.id.textview)
         //textView.text = carouselDataList[position]
