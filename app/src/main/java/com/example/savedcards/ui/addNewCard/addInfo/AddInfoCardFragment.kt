@@ -121,7 +121,7 @@ class AddInfoCardFragment : Fragment() {
     private fun fillCardInfo() {
         currentCard = CardInfo(
             "",
-            binding.cardNumberEditText.text.toString(),
+            binding.cardNumberEditText.text.toString().replace("\\s".toRegex(), ""),
             binding.nameEditText.text.toString(),
             binding.monthEditText.text.toString(),
             binding.yearEditText.text.toString(),

@@ -1,6 +1,7 @@
 package com.example.savedcards.ui.home
 
-import android.os.Bundle
+import android.content.Context
+import android.os.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.savedcards.MainActivity
 import com.example.savedcards.R
 import com.example.savedcards.data.CardInfo
 import com.example.savedcards.data.Cards
 import com.example.savedcards.databinding.FragmentHomeBinding
 import com.example.savedcards.ui.home.adapters.ListCardAdapter
 import com.example.savedcards.ui.home.adapters.ListShortcutAdapter
+import com.example.savedcards.util.Constants.APP_PIN_CODE
 import com.example.savedcards.util.Constants.LIST_OF_SHORTCUTS
 import com.example.savedcards.util.Constants.MY_CARDS
 import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
@@ -24,6 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var listCardAdapter: ListCardAdapter
     private lateinit var listShortcutAdapter: ListShortcutAdapter
+    private lateinit var pinCreated: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,21 +50,51 @@ class HomeFragment : Fragment() {
     }
 
     private fun initComponent() {
+        checkPinCreated()
         initListCards()
         initListShortcuts()
 
         binding.addView.setOnClickListener {
-            findNavController().navigate(R.id.addInfoCardFragment)
+            if (pinCreated.isNullOrEmpty()) {
+                vibratePhone()
+                shakePinLayout()
+            } else findNavController().navigate(R.id.addInfoCardFragment)
         }
 
         binding.emptyListView.setOnClickListener {
-            findNavController().navigate(R.id.addInfoCardFragment)
+            if (pinCreated.isNullOrEmpty()) {
+                vibratePhone()
+                shakePinLayout()
+            } else findNavController().navigate(R.id.addInfoCardFragment)
+        }
+
+        binding.bottomLeftView.setOnClickListener {
+            findNavController().navigate(R.id.profileFragment)
+        }
+
+        binding.bottomRightView.setOnClickListener {
+            findNavController().navigate(R.id.secureAppFragment)
+        }
+
+        binding.createPinCl.setOnClickListener {
+            findNavController().navigate(R.id.pinCodeFragment)
+        }
+    }
+
+    private fun checkPinCreated() {
+        val getPinCreated = ModelPreferencesManager.get<String>(APP_PIN_CODE)
+        if (getPinCreated == null) {
+            pinCreated = ""
+            shakePinLayout()
+            binding.createPinCl.visibility = View.VISIBLE
+        } else {
+            binding.createPinCl.visibility = View.GONE
+            pinCreated = getPinCreated
         }
     }
 
     private fun initListShortcuts() {
         listShortcutAdapter = ListShortcutAdapter(context, LIST_OF_SHORTCUTS)
-
         binding.shortcutList.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = listShortcutAdapter
@@ -88,6 +122,24 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun vibratePhone() {
+        val vibrator = MainActivity.activityInstance.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (vibrator.hasVibrator()) { // Vibrator availability checking
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE)) // New vibrate method for API Level 26 or higher
+            } else {
+                vibrator.vibrate(300) // Vibrate method for below API Level 26
+            }
+        }
+    }
+
+    private fun shakePinLayout() {
+        binding.createPinCl.animate().scaleX(0.9f).scaleY(0.9f).setDuration(400).start()
+        Handler().postDelayed({
+            binding.createPinCl.animate().scaleX(1f).scaleY(1f).setDuration(400).start()
+        }, 500)
     }
 
     private fun showEmptyList() {

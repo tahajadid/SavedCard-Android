@@ -19,6 +19,7 @@ import com.example.savedcards.R
 import com.example.savedcards.databinding.FragmentCardDetailsBinding
 import com.example.savedcards.util.Constants
 import com.example.savedcards.util.currentCardSelected
+import com.example.savedcards.util.numberCardUtil.ScratchCardUtil
 import com.example.spicyanimation.SpicyAnimation
 
 class CardDetailsFragment : Fragment() {
@@ -62,7 +63,7 @@ class CardDetailsFragment : Fragment() {
         }, 600)
 
         binding.cardTitle.text = currentCardSelected?.title ?: ""
-        binding.cardNumber.text = currentCardSelected?.number ?: ""
+        binding.cardNumber.text = ScratchCardUtil.addSeparatorToNumber(currentCardSelected?.number.toString())
         binding.cardName.text = currentCardSelected?.fullName ?: ""
         binding.cardDate.text = currentCardSelected!!.expirationMonth.toString() +
             "/" +

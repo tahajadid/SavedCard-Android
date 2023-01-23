@@ -51,5 +51,15 @@
         android:name="com.example.savedcards.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/pinCodeFragment"
+        android:name="com.example.savedcards.ui.pinCode.PinCodeFragment"
+        android:label="fragment_pin_code"
+        tools:layout="@layout/fragment_pin_code" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.savedcards.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
 
 </navigation>
