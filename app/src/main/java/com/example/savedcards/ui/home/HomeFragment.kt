@@ -5,7 +5,6 @@ import android.os.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -22,7 +21,6 @@ import com.example.savedcards.util.Constants.LIST_OF_SHORTCUTS
 import com.example.savedcards.util.Constants.MY_CARDS
 import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 import com.example.savedcards.util.mySessionCards
-import com.example.spicyanimation.SpicyAnimation
 
 class HomeFragment : Fragment() {
 
@@ -68,6 +66,18 @@ class HomeFragment : Fragment() {
                 vibratePhone()
                 shakePinLayout()
             } else findNavController().navigate(R.id.addInfoCardFragment)
+        }
+
+        binding.bottomLeftView.setOnClickListener {
+            findNavController().navigate(R.id.profileFragment)
+        }
+
+        binding.bottomRightView.setOnClickListener {
+            findNavController().navigate(R.id.secureAppFragment)
+        }
+
+        binding.createPinCl.setOnClickListener {
+            findNavController().navigate(R.id.pinCodeFragment)
         }
     }
 

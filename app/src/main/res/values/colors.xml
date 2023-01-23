@@ -24,5 +24,6 @@
 
     <!-- Add Error Colors -->
     <color name="error">#DC3A07</color>
+    <color name="error_pin">#EE815E</color>
 
 </resources>
