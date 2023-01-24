@@ -73,7 +73,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.bottomRightView.setOnClickListener {
-            findNavController().navigate(R.id.secureAppFragment)
+            findNavController().navigate(R.id.settingFragment)
         }
 
         binding.createPinCl.setOnClickListener {
