@@ -76,4 +76,7 @@ dependencies {
     // SpicyAnimation
     implementation 'com.github.tahajadid:SpicyAnimation:0.1.0'
 
+    // biometric for fingerprint
+    implementation("androidx.biometric:biometric:1.2.0-alpha04")
+
 }
