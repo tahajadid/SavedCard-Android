@@ -6,8 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.example.savedcards.MainActivity
 import com.example.savedcards.R
 import com.example.savedcards.databinding.FragmentSettingBinding
+import com.example.savedcards.util.FINGERPRINT_ACTIVATED
+import com.example.savedcards.util.biometricManagerUtil.BiometricManagerUtil
+import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 
 class SettingFragment : Fragment() {
 
@@ -29,6 +33,24 @@ class SettingFragment : Fragment() {
             false
         )
 
+        initComponents()
+
         return binding.root
+    }
+
+    private fun initComponents() {
+        binding.customSwitch.setOnClickListener {
+            setStateSwitch()
+            BiometricManagerUtil.showPropBiometricSetting(MainActivity.activityInstance)
+
+            // Log Analytics
+        }
+    }
+
+    fun setStateSwitch() {
+        binding.customSwitch.isChecked = !(
+            ModelPreferencesManager.get<Boolean>(FINGERPRINT_ACTIVATED) == null ||
+                ModelPreferencesManager.get<Boolean>(FINGERPRINT_ACTIVATED) == false
+            )
     }
 }
