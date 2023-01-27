@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_alignParentBottom="true"
     android:fitsSystemWindows="true"
-    tools:context=".ui.secureApp.SecureAppFragment">
+    tools:context=".ui.home.secureApp.SecureAppFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
