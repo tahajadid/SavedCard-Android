@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.savedcards.MainActivity
 import com.example.savedcards.R
 import com.example.savedcards.databinding.FragmentSettingBinding
@@ -17,8 +18,17 @@ class SettingFragment : Fragment() {
 
     private lateinit var binding: FragmentSettingBinding
 
+    companion object {
+        lateinit var settingInstance: SettingFragment
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setStateSwitch()
     }
 
     override fun onCreateView(
@@ -33,6 +43,8 @@ class SettingFragment : Fragment() {
             false
         )
 
+        settingInstance = this
+
         initComponents()
 
         return binding.root
@@ -42,8 +54,10 @@ class SettingFragment : Fragment() {
         binding.customSwitch.setOnClickListener {
             setStateSwitch()
             BiometricManagerUtil.showPropBiometricSetting(MainActivity.activityInstance)
+        }
 
-            // Log Analytics
+        binding.backClickView.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 

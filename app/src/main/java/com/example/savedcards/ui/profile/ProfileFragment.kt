@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.savedcards.R
 import com.example.savedcards.databinding.FragmentProfileBinding
 
@@ -29,6 +30,14 @@ class ProfileFragment : Fragment() {
             false
         )
 
+        initComponents()
+
         return binding.root
+    }
+
+    private fun initComponents() {
+        binding.backClickView.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 }

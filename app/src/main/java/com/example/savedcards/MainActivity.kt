@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         lateinit var navController: NavController
         lateinit var activityInstance: MainActivity
+        var currentDestinationId: Int = 0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +34,14 @@ class MainActivity : AppCompatActivity() {
 
         navController =
             Navigation.findNavController(this, R.id.nav_host_fragment)
+
+        /**
+         * Get destination id when is changed
+         * onCreate
+         */
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            currentDestinationId = destination.id
+        }
     }
 
     /**
