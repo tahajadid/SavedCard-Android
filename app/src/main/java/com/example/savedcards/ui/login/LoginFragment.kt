@@ -9,10 +9,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.savedcards.MainActivity
 import com.example.savedcards.R
 import com.example.savedcards.databinding.FragmentLoginBinding
+import com.example.savedcards.ui.setting.SettingFragment
 import com.example.savedcards.util.Constants
+import com.example.savedcards.util.biometricManagerUtil.BiometricManagerUtil
 import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 
 class LoginFragment : Fragment() {
@@ -24,6 +28,10 @@ class LoginFragment : Fragment() {
 
     // code to verify the correct behavior
     var secretCode = ""
+
+    companion object {
+        lateinit var loginInstance: LoginFragment
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +50,8 @@ class LoginFragment : Fragment() {
             false
         )
 
+        loginInstance = this
+
         initComponents()
 
         return binding.root
@@ -51,7 +61,21 @@ class LoginFragment : Fragment() {
         initDigitView()
         ListenToButton()
 
+        // Check if Device have a fingerprint option
+        if (!BiometricManagerUtil.hasBiometricAuthenticator(requireContext())) {
+            hideFingerPrintSection()
+        }
+
         secretCode = ModelPreferencesManager.get<String>(Constants.APP_PIN_CODE).toString()
+
+        binding.fingerprintBg.setOnClickListener {
+            BiometricManagerUtil.showPropBiometric(MainActivity.activityInstance, false)
+        }
+    }
+
+    private fun hideFingerPrintSection() {
+        binding.fingerprintBg.visibility = View.GONE
+        binding.fingerprintIv.visibility = View.GONE
     }
 
     // function that listen to each click and add the digit which the user had clicked on
@@ -120,7 +144,7 @@ class LoginFragment : Fragment() {
 
         Handler().postDelayed({
             findNavController().navigate(R.id.homeFragment)
-        }, 600) // 3000 is the delayed time in milliseconds.
+        }, 1000) // 3000 is the delayed time in milliseconds.
     }
 
     // function that remove the last digit entered
@@ -312,5 +336,14 @@ class LoginFragment : Fragment() {
                 R.drawable.password_rounded_wrong
             )
         }
+    }
+
+    fun navigateToHome() {
+        MainActivity.activityInstance.findNavController(R.id.nav_host_fragment)
+            .popBackStack(
+                R.id.loginFragment,
+                true
+            )
+        findNavController().navigate(R.id.homeFragment)
     }
 }

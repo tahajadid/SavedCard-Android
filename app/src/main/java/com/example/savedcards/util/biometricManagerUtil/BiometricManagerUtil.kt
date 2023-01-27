@@ -10,7 +10,10 @@ import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_WEAK
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import com.example.savedcards.MainActivity
+import com.example.savedcards.ui.login.LoginFragment
+import com.example.savedcards.ui.setting.SettingFragment
 import com.example.savedcards.util.Constants.BIOMETRIC_CREDENTIAL
 import com.example.savedcards.util.FINGERPRINT_ACTIVATED
 import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
@@ -54,13 +57,7 @@ object BiometricManagerUtil {
                     result: BiometricPrompt.AuthenticationResult
                 ) {
                     super.onAuthenticationSucceeded(result)
-                    if (fromSetting.equals(false)) {
-                        var intent = Intent(mainActivity, MainActivity::class.java)
-                        mainActivity.startActivity(intent)
-                        mainActivity.finish()
-                    } else {
-                        ModelPreferencesManager.put(true, FINGERPRINT_ACTIVATED)
-                    }
+                    LoginFragment.loginInstance.navigateToHome()
                 }
 
                 /**
@@ -110,7 +107,6 @@ object BiometricManagerUtil {
                     errString: CharSequence
                 ) {
                     super.onAuthenticationError(errorCode, errString)
-
                     ModelPreferencesManager.put(false, FINGERPRINT_ACTIVATED)
                 }
 
@@ -130,7 +126,7 @@ object BiometricManagerUtil {
                     } else {
                         ModelPreferencesManager.put(false, FINGERPRINT_ACTIVATED)
                     }
-                    // SettingsSecurityFragment.settingInstance.setStateSwitch()
+                    SettingFragment.settingInstance.setStateSwitch()
 
                     // Log Analytics
                 }
@@ -141,8 +137,8 @@ object BiometricManagerUtil {
                  */
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
-                    // ModelPreferencesManager.put(false, Constants.FINGERPRINT_ACTIVATED)
-                    // SettingsSecurityFragment.settingInstance.setStateSwitch()
+                    ModelPreferencesManager.put(false, FINGERPRINT_ACTIVATED)
+                    SettingFragment.settingInstance.setStateSwitch()
                 }
             }
         )

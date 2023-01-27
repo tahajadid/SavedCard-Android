@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.savedcards.MainActivity
@@ -54,9 +55,14 @@ class ListShortcutAdapter(
                 }
             } else {
                 container.setBackgroundResource(R.drawable.shortcuts_disabled_bg)
-                container.isEnabled = false
+                container.setOnClickListener {
+                    Toast.makeText(
+                        MainActivity.activityInstance,
+                        "Feature available on next release 1.0",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-
         }
     }
 
