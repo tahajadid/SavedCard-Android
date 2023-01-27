@@ -107,11 +107,20 @@ class LoginFragment : Fragment() {
             // we should verify the code
             checkCountDigit()
             if (secretCode == getDigitActual()) {
-                findNavController().navigate(R.id.homeFragment)
+                animateLoader()
             } else {
                 behaviorWrongPassword()
             }
         }
+    }
+
+    private fun animateLoader() {
+        binding.animateBg.visibility = View.VISIBLE
+        binding.animationLoading.visibility = View.VISIBLE
+
+        Handler().postDelayed({
+            findNavController().navigate(R.id.homeFragment)
+        }, 600) // 3000 is the delayed time in milliseconds.
     }
 
     // function that remove the last digit entered
@@ -250,20 +259,28 @@ class LoginFragment : Fragment() {
 
     // function that do the UI behavior in wrong secret code case
     private fun behaviorWrongPassword() {
-        binding.mainCl.isEnabled = false
-        fillWrongPassword()
+        binding.animateBg.visibility = View.VISIBLE
+        binding.animationLoading.visibility = View.VISIBLE
 
-        // Make a delay then init the view and let the user
-        // Enter again the secret code
         Handler().postDelayed({
-            try {
-                initDigitView()
-                binding.mainCl.isEnabled = true
-            } catch (e: java.lang.Exception) {
-                // Catch in case of changing UI and can't find the id of the UIView
-                Log.d("TestCatch", "Catched")
-            }
-        }, 2000)
+            binding.animateBg.visibility = View.GONE
+            binding.animationLoading.visibility = View.GONE
+
+            binding.mainCl.isEnabled = false
+            fillWrongPassword()
+
+            // Make a delay then init the view and let the user
+            // Enter again the secret code
+            Handler().postDelayed({
+                try {
+                    initDigitView()
+                    binding.mainCl.isEnabled = true
+                } catch (e: java.lang.Exception) {
+                    // Catch in case of changing UI and can't find the id of the UIView
+                    Log.d("TestCatch", "Catched")
+                }
+            }, 2000)
+        }, 600) // 3000 is the delayed time in milliseconds.
     }
 
     // function that change the UI view to show the error in case of wrong secret code
