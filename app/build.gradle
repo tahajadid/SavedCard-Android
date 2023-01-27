@@ -79,4 +79,7 @@ dependencies {
     // biometric for fingerprint
     implementation("androidx.biometric:biometric:1.2.0-alpha04")
 
+    // Add Lottiefile library fr anim JSON
+    implementation "com.airbnb.android:lottie:3.4.0"
+
 }
