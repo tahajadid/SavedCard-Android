@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_card_details" />
     <fragment
         android:id="@+id/secureAppFragment"
-        android:name="com.example.savedcards.ui.secureApp.SecureAppFragment"
+        android:name="com.example.savedcards.ui.home.secureApp.SecureAppFragment"
         android:label="fragment_secure_app"
         tools:layout="@layout/fragment_secure_app" />
     <fragment
