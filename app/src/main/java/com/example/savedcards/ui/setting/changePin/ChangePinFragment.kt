@@ -15,6 +15,7 @@ import com.example.savedcards.R
 import com.example.savedcards.databinding.FragmentChangePinBinding
 import com.example.savedcards.util.Constants
 import com.example.savedcards.util.Constants.FIRST_STEP
+import com.example.savedcards.util.Constants.SECOND_STEP
 import com.example.savedcards.util.animationUtil.AnimationUtil
 import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 import com.example.savedcards.util.stepPinCodeFragment
@@ -44,7 +45,7 @@ class ChangePinFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_pin_code,
+            R.layout.fragment_change_pin,
             container,
             false
         )
@@ -56,7 +57,8 @@ class ChangePinFragment : Fragment() {
 
     private fun initComponents() {
         binding.backClickView.setOnClickListener {
-            findNavController().navigateUp()
+            stepPinCodeFragment = FIRST_STEP
+            findNavController().navigate(R.id.settingFragment)
         }
         initDigitView()
         ListenToButton()
@@ -114,32 +116,58 @@ class ChangePinFragment : Fragment() {
             // in case of tapping the digit number 4
             // we should verify the code
             checkCountDigit()
-            if (isFirstStep) {
-                secretCode = getDigitActual()
-                isFirstStep = false
-                isEnabledkeyboard = false
-                Handler().postDelayed({
-                    try {
-                        initDigitView()
-                        isEnabledkeyboard = true
-                    } catch (e: java.lang.Exception) {
-                        // Catch in case of changing UI and can't find the id of the UIView
-                        Log.d("TestCatch", "Catched")
-                    }
-                }, 500)
-            } else {
+            if (stepPinCodeFragment.equals(FIRST_STEP)) {
+                secretCode = ModelPreferencesManager.get<String>(Constants.APP_PIN_CODE).toString()
                 if (secretCode == getDigitActual()) {
-                    registerPassword()
+                    animateLoader()
                 } else {
                     behaviorWrongPassword()
+                }
+            } else {
+                if (isFirstStep) {
+                    secretCode = getDigitActual()
+                    isFirstStep = false
+                    isEnabledkeyboard = false
+                    Handler().postDelayed({
+                        try {
+                            initDigitView()
+                            isEnabledkeyboard = true
+                        } catch (e: java.lang.Exception) {
+                            // Catch in case of changing UI and can't find the id of the UIView
+                            Log.d("TestCatch", "Catched")
+                        }
+                    }, 500)
+                } else {
+                    if (secretCode == getDigitActual()) {
+                        registerPassword()
+                    } else {
+                        behaviorWrongPassword()
+                    }
                 }
             }
         }
     }
 
+    private fun animateLoader() {
+        binding.animateBg.visibility = View.VISIBLE
+        binding.animationLoading.visibility = View.VISIBLE
+
+        Handler().postDelayed({
+            stepPinCodeFragment = SECOND_STEP
+            findNavController().navigate(R.id.changePinFragment)
+        }, 1000) // 3000 is the delayed time in milliseconds.
+    }
+
     private fun registerPassword() {
-        ModelPreferencesManager.put<String>(getDigitActual(), Constants.APP_PIN_CODE)
-        findNavController().navigate(R.id.homeFragment)
+        ModelPreferencesManager.put(getDigitActual(), Constants.APP_PIN_CODE)
+
+        binding.animateBg.visibility = View.VISIBLE
+        binding.animationLoading.visibility = View.VISIBLE
+
+        Handler().postDelayed({
+            stepPinCodeFragment = FIRST_STEP
+            findNavController().navigate(R.id.homeFragment)
+        }, 1000) // 3000 is the delayed time in milliseconds.
     }
 
     // function that remove the last digit entered
@@ -190,36 +218,75 @@ class ChangePinFragment : Fragment() {
     // function that check the counter to fill the last purple circle
     private fun checkDiscountDigit() {
         when (countDigit) {
-            0 -> binding.digitOne.background = context?.let {
-                ContextCompat.getDrawable(
-                    it,
-                    R.drawable.password_rounded
-                )
+            0 -> {
+                if (stepPinCodeFragment.equals(FIRST_STEP)) {
+                    binding.digitOne.background = context?.let {
+                        ContextCompat.getDrawable(
+                            it,
+                            R.drawable.password_rounded_actual
+                        )
+                    }
+                } else {
+                    binding.digitOne.background = context?.let {
+                        ContextCompat.getDrawable(
+                            it,
+                            R.drawable.password_rounded
+                        )
+                    }
+                }
             }
 
-            1 ->
-                binding.digitTwo.background = context?.let {
-                    ContextCompat.getDrawable(
-                        it,
-                        R.drawable.password_rounded
-                    )
+            1 -> {
+                if (stepPinCodeFragment.equals(FIRST_STEP)) {
+                    binding.digitTwo.background = context?.let {
+                        ContextCompat.getDrawable(
+                            it,
+                            R.drawable.password_rounded_actual
+                        )
+                    }
+                } else {
+                    binding.digitTwo.background = context?.let {
+                        ContextCompat.getDrawable(
+                            it,
+                            R.drawable.password_rounded
+                        )
+                    }
                 }
-
-            2 ->
-                binding.digitThree.background = context?.let {
-                    ContextCompat.getDrawable(
-                        it,
-                        R.drawable.password_rounded
-                    )
+            }
+            2 -> {
+                if (stepPinCodeFragment.equals(FIRST_STEP)) {
+                    binding.digitThree.background = context?.let {
+                        ContextCompat.getDrawable(
+                            it,
+                            R.drawable.password_rounded_actual
+                        )
+                    }
+                } else {
+                    binding.digitThree.background = context?.let {
+                        ContextCompat.getDrawable(
+                            it,
+                            R.drawable.password_rounded
+                        )
+                    }
                 }
-
-            3 ->
-                binding.digitFour.background = context?.let {
-                    ContextCompat.getDrawable(
-                        it,
-                        R.drawable.password_rounded
-                    )
+            }
+            3 -> {
+                if (stepPinCodeFragment.equals(FIRST_STEP)) {
+                    binding.digitFour.background = context?.let {
+                        ContextCompat.getDrawable(
+                            it,
+                            R.drawable.password_rounded_actual
+                        )
+                    }
+                } else {
+                    binding.digitFour.background = context?.let {
+                        ContextCompat.getDrawable(
+                            it,
+                            R.drawable.password_rounded
+                        )
+                    }
                 }
+            }
         }
     }
 
@@ -246,50 +313,62 @@ class ChangePinFragment : Fragment() {
 
     // init view for the first step
     fun initDigitViewOldPin() {
+        binding.mainCl.background = context?.let {
+            ContextCompat.getDrawable(
+                it,
+                R.drawable.main_bg_pin
+            )
+        }
+        binding.imageView4.setImageResource(R.drawable.actual_pin_icon)
+
         // we set the counter to initial value
         initDigitAndCounter()
-        if (isFirstStep) {
-            AnimationUtil.changeTextContent(binding.confirmerPasswordTv, "Enter The Pin Code")
-        } else {
-            AnimationUtil.changeTextContent(binding.confirmerPasswordTv, "Enter The Same Pin Code")
-        }
-        binding.confirmerPasswordTv.setTextColor(Color.parseColor("#e0f7fa"))
+        AnimationUtil.changeTextContent(binding.confirmerPasswordTv, "Enter Your Actual Pin Code")
+        binding.confirmerPasswordTv.setTextColor(Color.parseColor("#006064"))
 
         binding.digitOne.background = context?.let {
             ContextCompat.getDrawable(
                 it,
-                R.drawable.password_rounded
+                R.drawable.password_rounded_actual
             )
         }
 
         binding.digitTwo.background = context?.let {
             ContextCompat.getDrawable(
                 it,
-                R.drawable.password_rounded
+                R.drawable.password_rounded_actual
             )
         }
 
         binding.digitThree.background = context?.let {
             ContextCompat.getDrawable(
                 it,
-                R.drawable.password_rounded
+                R.drawable.password_rounded_actual
             )
         }
 
         binding.digitFour.background = context?.let {
             ContextCompat.getDrawable(
                 it,
-                R.drawable.password_rounded
+                R.drawable.password_rounded_actual
             )
         }
     }
 
     // init view for the second and the lalst step
     fun initDigitViewNewPin() {
+        binding.mainCl.background = context?.let {
+            ContextCompat.getDrawable(
+                it,
+                R.color.cyan_800
+            )
+        }
+
+        binding.imageView4.setImageResource(R.drawable.new_pin_icon)
         // we set the counter to initial value
         initDigitAndCounter()
         if (isFirstStep) {
-            AnimationUtil.changeTextContent(binding.confirmerPasswordTv, "Enter The Pin Code")
+            AnimationUtil.changeTextContent(binding.confirmerPasswordTv, "Enter The New Pin Code")
         } else {
             AnimationUtil.changeTextContent(binding.confirmerPasswordTv, "Enter The Same Pin Code")
         }
