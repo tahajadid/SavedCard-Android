@@ -62,6 +62,22 @@ tools:context=".ui.login.LoginFragment">
             app:layout_constraintVertical_bias="1.0" />
 
 
+        <TextView
+            android:id="@+id/wrong_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/tulisans"
+            android:text="Wrong password"
+            android:textColor="@color/error_pin"
+            android:textSize="24sp"
+            android:visibility="invisible"
+            android:elevation="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/password_digit_cl"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView4"
+            app:layout_constraintVertical_bias="0.7" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/password_digit_cl"
             android:layout_width="wrap_content"
@@ -70,7 +86,8 @@ tools:context=".ui.login.LoginFragment">
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline5">
+            app:layout_constraintTop_toTopOf="@+id/guideline5"
+            app:layout_constraintVertical_bias="0.64">
 
 
             <View
@@ -324,8 +341,8 @@ tools:context=".ui.login.LoginFragment">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animationLoading"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
