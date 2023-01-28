@@ -60,6 +60,147 @@
             app:layout_constraintStart_toEndOf="@+id/back_view"
             app:layout_constraintTop_toTopOf="@+id/back_view" />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back_click_view">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+                <TextView
+                    android:id="@+id/title1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tulisans"
+                    android:text="Benefits of the app"
+                    android:textColor="@color/cyan_800"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="2dp"
+                    android:background="@color/cyan_100"
+                    app:layout_constraintBottom_toBottomOf="@+id/title1"
+                    app:layout_constraintStart_toEndOf="@+id/title1" />
+
+                <TextView
+                    android:id="@+id/description1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tulisans"
+                    android:text="There are several areas where you can make the best of the extensive control on your information.\nSave the information to use it in all cases"
+                    android:textColor="@color/cyan_600"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title1" />
+
+
+                <TextView
+                    android:id="@+id/title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tulisans"
+                    android:text="Security implemented in the app"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/cyan_800"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description1" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="2dp"
+                    android:background="@color/cyan_100"
+                    app:layout_constraintBottom_toBottomOf="@+id/title2"
+                    app:layout_constraintStart_toEndOf="@+id/title2" />
+                <TextView
+                    android:id="@+id/description2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tulisans"
+                    android:text="First of all the application is totally used in offline mode, so the user can add the information only in the cache of the phone and no third party is included.\nAll the information are secured by :\n 1. Pin created by the user\n 2.Encryption of the information stored on the cache of the phone\n 3.Obfuscation of the code to prevent any external problem"
+                    android:textColor="@color/cyan_600"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title2" />
+
+                <TextView
+                    android:id="@+id/title3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tulisans"
+                    android:text="Encryption"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/cyan_800"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description2" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="2dp"
+                    android:background="@color/cyan_100"
+                    app:layout_constraintBottom_toBottomOf="@+id/title3"
+                    app:layout_constraintStart_toEndOf="@+id/title3" />
+
+                <TextView
+                    android:id="@+id/description3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tulisans"
+                    android:text="The application is totally used in offline mode, so the user can add the information only in the cache of the phone and no third party is included.\nAll the information are secured by :\n 1. Pin created by the user\n 2.Encryption of the information stored on the cache of the phone\n 3.Obfuscation of the code to prevent any external problem"
+                    android:textColor="@color/cyan_600"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title3" />
+
+                <TextView
+                    android:id="@+id/title4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tulisans"
+                    android:text="Offline mode"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/cyan_800"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/description3" />
+
+                <View
+                    android:layout_width="20dp"
+                    android:layout_height="2dp"
+                    android:background="@color/cyan_100"
+                    app:layout_constraintBottom_toBottomOf="@+id/title4"
+                    app:layout_constraintStart_toEndOf="@+id/title4" />
+
+                <TextView
+                    android:id="@+id/description4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/tulisans"
+                    android:text="First of all the application is totally used in offline mode, so the user can add the information only in the cache of the phone and no third party is included.\nAll the information are secured by :\n 1. Pin created by the user\n 2.Encryption of the information stored on the cache of the phone\n 3.Obfuscation of the code to prevent any external problem"
+                    android:textColor="@color/cyan_600"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title4" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

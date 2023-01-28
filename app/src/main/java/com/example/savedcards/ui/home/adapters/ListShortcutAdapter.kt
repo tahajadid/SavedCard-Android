@@ -48,7 +48,7 @@ class ListShortcutAdapter(
                 container.setOnClickListener {
                     when (item.iconId?.toInt()) {
                         0 -> MainActivity.navController.navigate(R.id.addInfoCardFragment)
-                        1 -> MainActivity.navController.navigate(R.id.addInfoCardFragment)
+                        1 -> MainActivity.navController.navigate(R.id.secureAppFragment)
                         2 -> MainActivity.navController.navigate(R.id.addInfoCardFragment)
                         else -> MainActivity.navController.navigate(R.id.addInfoCardFragment)
                     }
