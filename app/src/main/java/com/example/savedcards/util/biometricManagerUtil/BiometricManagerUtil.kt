@@ -1,7 +1,6 @@
 package com.example.savedcards.util.biometricManagerUtil
 
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.hardware.fingerprint.FingerprintManager
 import android.os.Build
@@ -10,12 +9,11 @@ import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_WEAK
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
 import com.example.savedcards.MainActivity
 import com.example.savedcards.ui.login.LoginFragment
 import com.example.savedcards.ui.setting.SettingFragment
 import com.example.savedcards.util.Constants.BIOMETRIC_CREDENTIAL
-import com.example.savedcards.util.FINGERPRINT_ACTIVATED
+import com.example.savedcards.util.Constants.FINGERPRINT_ACTIVATED
 import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 import java.util.concurrent.Executor
 

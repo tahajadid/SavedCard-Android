@@ -68,13 +68,13 @@ class LoginFragment : Fragment() {
 
         secretCode = ModelPreferencesManager.get<String>(Constants.APP_PIN_CODE).toString()
 
-        binding.fingerprintBg.setOnClickListener {
+        binding.fingerprintIv.setOnClickListener {
             BiometricManagerUtil.showPropBiometric(MainActivity.activityInstance, false)
         }
     }
 
     private fun hideFingerPrintSection() {
-        binding.fingerprintBg.visibility = View.GONE
+        binding.fingerprintIv.visibility = View.GONE
         binding.fingerprintIv.visibility = View.GONE
     }
 
