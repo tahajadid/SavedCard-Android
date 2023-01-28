@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.savedcards.MainActivity
 import com.example.savedcards.R
 import com.example.savedcards.databinding.FragmentSettingBinding
-import com.example.savedcards.util.FINGERPRINT_ACTIVATED
+import com.example.savedcards.util.Constants.FINGERPRINT_ACTIVATED
 import com.example.savedcards.util.biometricManagerUtil.BiometricManagerUtil
 import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 
@@ -59,6 +59,15 @@ class SettingFragment : Fragment() {
         binding.backClickView.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        // Check if Device have a fingerprint option
+        if (!BiometricManagerUtil.hasBiometricAuthenticator(requireContext())) {
+            hideFingerPrintSection()
+        }
+    }
+
+    private fun hideFingerPrintSection() {
+        binding.fingerprintCl.visibility = View.GONE
     }
 
     fun setStateSwitch() {
