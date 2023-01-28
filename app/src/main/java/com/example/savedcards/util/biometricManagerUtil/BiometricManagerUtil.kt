@@ -78,9 +78,8 @@ object BiometricManagerUtil {
          *
          */
         promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("setTitle 1")
-            .setSubtitle("setSubtitle 1")
-            .setNegativeButtonText("setNegativeButtonText 1")
+            .setTitle("Login with fingerprint")
+            .setNegativeButtonText("Login with Pin")
             .build()
 
         biometricPrompt.authenticate(promptInfo)
@@ -148,9 +147,8 @@ object BiometricManagerUtil {
          *
          */
         promptInfo = BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Title")
-            .setSubtitle("setSubtitle")
-            .setNegativeButtonText("setNegativeButtonText")
+            .setTitle("Login with fingerprint")
+            .setNegativeButtonText("Login with Pin")
             .build()
 
         biometricPrompt.authenticate(promptInfo)
