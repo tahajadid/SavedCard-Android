@@ -40,7 +40,6 @@ class SplashFragment : Fragment() {
 
     private fun initComponents() {
         val getPinCreated = ModelPreferencesManager.get<String>(Constants.APP_PIN_CODE)
-        Log.d("SECRETLOG","equl : "+getPinCreated)
         if (getPinCreated == null) {
             findNavController().navigate(R.id.homeFragment)
         } else {

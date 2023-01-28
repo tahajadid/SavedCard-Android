@@ -1,5 +1,6 @@
 package com.example.savedcards.ui.login
 
+import android.animation.Animator
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -14,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.savedcards.MainActivity
 import com.example.savedcards.R
 import com.example.savedcards.databinding.FragmentLoginBinding
-import com.example.savedcards.ui.setting.SettingFragment
 import com.example.savedcards.util.Constants
 import com.example.savedcards.util.biometricManagerUtil.BiometricManagerUtil
 import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
@@ -28,6 +28,8 @@ class LoginFragment : Fragment() {
 
     // code to verify the correct behavior
     var secretCode = ""
+
+    var isCorrect = false
 
     companion object {
         lateinit var loginInstance: LoginFragment
@@ -139,12 +141,25 @@ class LoginFragment : Fragment() {
     }
 
     private fun animateLoader() {
+        isCorrect = true
         binding.animateBg.visibility = View.VISIBLE
         binding.animationLoading.visibility = View.VISIBLE
 
-        Handler().postDelayed({
-            findNavController().navigate(R.id.homeFragment)
-        }, 1000) // 3000 is the delayed time in milliseconds.
+        binding.animationLoading.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator) {
+                // noth
+            }
+
+            override fun onAnimationEnd(animation: Animator) {
+            }
+
+            override fun onAnimationCancel(animation: Animator) {
+            }
+
+            override fun onAnimationRepeat(animation: Animator) {
+                if (isCorrect) findNavController().navigate(R.id.homeFragment)
+            }
+        })
     }
 
     // function that remove the last digit entered
@@ -283,28 +298,46 @@ class LoginFragment : Fragment() {
 
     // function that do the UI behavior in wrong secret code case
     private fun behaviorWrongPassword() {
+        isCorrect = false
+
         binding.animateBg.visibility = View.VISIBLE
         binding.animationLoading.visibility = View.VISIBLE
 
-        Handler().postDelayed({
-            binding.animateBg.visibility = View.GONE
-            binding.animationLoading.visibility = View.GONE
+        binding.animationLoading.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator) {
+                // noth
+            }
 
-            binding.mainCl.isEnabled = false
-            fillWrongPassword()
+            override fun onAnimationEnd(animation: Animator) {
+            }
 
-            // Make a delay then init the view and let the user
-            // Enter again the secret code
-            Handler().postDelayed({
-                try {
-                    initDigitView()
-                    binding.mainCl.isEnabled = true
-                } catch (e: java.lang.Exception) {
-                    // Catch in case of changing UI and can't find the id of the UIView
-                    Log.d("TestCatch", "Catched")
+            override fun onAnimationCancel(animation: Animator) {
+            }
+
+            override fun onAnimationRepeat(animation: Animator) {
+                if (!isCorrect) {
+                    binding.wrongPassword.visibility = View.VISIBLE
+                    binding.animateBg.visibility = View.GONE
+                    binding.animationLoading.visibility = View.GONE
+
+                    binding.mainCl.isEnabled = false
+                    fillWrongPassword()
+
+                    // Make a delay then init the view and let the user
+                    // Enter again the secret code
+                    Handler().postDelayed({
+                        try {
+                            binding.wrongPassword.visibility = View.GONE
+                            initDigitView()
+                            binding.mainCl.isEnabled = true
+                        } catch (e: java.lang.Exception) {
+                            // Catch in case of changing UI and can't find the id of the UIView
+                            Log.d("TestCatch", "Catched")
+                        }
+                    }, 800)
                 }
-            }, 2000)
-        }, 600) // 3000 is the delayed time in milliseconds.
+            }
+        })
     }
 
     // function that change the UI view to show the error in case of wrong secret code
