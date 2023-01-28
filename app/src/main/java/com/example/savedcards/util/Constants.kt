@@ -26,6 +26,13 @@ object Constants {
     )
 
     /**
+     * State of steps n change pin code
+     */
+    const val FIRST_STEP = "FIRST_STEP"
+    const val SECOND_STEP = "SECOND_STEP"
+    const val LAST_STEP = "LAST_STEP"
+
+    /**
      * SaredPref Var:
      */
     const val MY_CARDS = "MY_CARDS"

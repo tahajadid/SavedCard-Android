@@ -61,5 +61,10 @@
         android:name="com.example.savedcards.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/changePinFragment"
+        android:name="com.example.savedcards.ui.setting.changePin.ChangePinFragment"
+        android:label="fragment_change_pin"
+        tools:layout="@layout/fragment_change_pin" />
 
 </navigation>
