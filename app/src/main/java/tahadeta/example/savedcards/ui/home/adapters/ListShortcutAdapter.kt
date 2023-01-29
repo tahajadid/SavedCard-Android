@@ -46,10 +46,10 @@ class ListShortcutAdapter(
                 container.setBackgroundResource(R.drawable.shortcut_bg)
                 container.setOnClickListener {
                     when (item.iconId?.toInt()) {
-                        0 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.addInfoCardFragment)
+                        0 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
                         1 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
-                        2 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.addInfoCardFragment)
-                        else -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.addInfoCardFragment)
+                        2 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
+                        else -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
                     }
                 }
             } else {
