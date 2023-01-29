@@ -8,62 +8,62 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.savedcards.ui.splashScreen.SplashFragment"
+        android:name="tahadeta.example.savedcards.ui.splashScreen.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.savedcards.ui.home.HomeFragment"
+        android:name="tahadeta.example.savedcards.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/addCardFragment"
-        android:name="com.example.savedcards.ui.addNewCard.chooseTheme.ChooseThemeFragment"
+        android:name="tahadeta.example.savedcards.ui.addNewCard.chooseTheme.ChooseThemeFragment"
         android:label="fragment_add_card"
         tools:layout="@layout/fragment_add_card" />
     <fragment
         android:id="@+id/addInfoCardFragment"
-        android:name="com.example.savedcards.ui.addNewCard.addInfo.AddInfoCardFragment"
+        android:name="tahadeta.example.savedcards.ui.addNewCard.addInfo.AddInfoCardFragment"
         android:label="fragment_add_info_card"
         tools:layout="@layout/fragment_add_info_card" />
     <fragment
         android:id="@+id/cardDetailsFragment"
-        android:name="com.example.savedcards.ui.cardDetails.CardDetailsFragment"
+        android:name="tahadeta.example.savedcards.ui.cardDetails.CardDetailsFragment"
         android:label="fragment_card_details"
         tools:layout="@layout/fragment_card_details" />
     <fragment
         android:id="@+id/secureAppFragment"
-        android:name="com.example.savedcards.ui.home.secureApp.SecureAppFragment"
+        android:name="tahadeta.example.savedcards.ui.home.secureApp.SecureAppFragment"
         android:label="fragment_secure_app"
         tools:layout="@layout/fragment_secure_app" />
     <fragment
         android:id="@+id/scanCardFragment"
-        android:name="com.example.savedcards.ui.scanCard.ScanCardFragment"
+        android:name="tahadeta.example.savedcards.ui.scanCard.ScanCardFragment"
         android:label="fragment_scan_card"
         tools:layout="@layout/fragment_scan_card" />
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.savedcards.ui.setting.SettingFragment"
+        android:name="tahadeta.example.savedcards.ui.setting.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.savedcards.ui.profile.ProfileFragment"
+        android:name="tahadeta.example.savedcards.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/pinCodeFragment"
-        android:name="com.example.savedcards.ui.pinCode.PinCodeFragment"
+        android:name="tahadeta.example.savedcards.ui.pinCode.PinCodeFragment"
         android:label="fragment_pin_code"
         tools:layout="@layout/fragment_pin_code" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.savedcards.ui.login.LoginFragment"
+        android:name="tahadeta.example.savedcards.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/changePinFragment"
-        android:name="com.example.savedcards.ui.setting.changePin.ChangePinFragment"
+        android:name="tahadeta.example.savedcards.ui.setting.changePin.ChangePinFragment"
         android:label="fragment_change_pin"
         tools:layout="@layout/fragment_change_pin" />
 

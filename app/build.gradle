@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.savedcards'
+    namespace 'tahadeta.example.savedcards'
     compileSdk 33
 
     defaultConfig {

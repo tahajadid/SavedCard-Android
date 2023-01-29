@@ -1,33 +1,39 @@
-package tahadeta.example.savedcards.ui.pinCode
+package tahadeta.example.savedcards.ui.login
 
-import android.graphics.Color
+import android.animation.Animator
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import tahadeta.example.savedcards.R
-import tahadeta.example.savedcards.databinding.FragmentPinCodeBinding
+import tahadeta.example.savedcards.databinding.FragmentLoginBinding
 import tahadeta.example.savedcards.util.Constants.APP_PIN_CODE
-import tahadeta.example.savedcards.util.animationUtil.AnimationUtil
+import tahadeta.example.savedcards.util.biometricManagerUtil.BiometricManagerUtil
 import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 
-class PinCodeFragment : Fragment() {
-
-    private lateinit var binding: FragmentPinCodeBinding
+class LoginFragment : Fragment() {
+    private lateinit var binding: FragmentLoginBinding
 
     var countDigit = 0
     var listDigit = mutableListOf<Int>()
-    var isFirstStep = true
     var isEnabledkeyboard = true
 
     // code to verify the correct behavior
     var secretCode = ""
+
+    var isCorrect = false
+
+    companion object {
+        lateinit var loginInstance: LoginFragment
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,10 +47,18 @@ class PinCodeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_pin_code,
+            R.layout.fragment_login,
             container,
             false
         )
+
+        val window: Window = requireActivity().window
+        if (window != null) {
+            window.setStatusBarColor(ContextCompat.getColor(requireActivity(), R.color.cyan_800))
+            window.navigationBarColor = ContextCompat.getColor(requireActivity(), R.color.black)
+        }
+
+        loginInstance = this
 
         initComponents()
 
@@ -52,11 +66,24 @@ class PinCodeFragment : Fragment() {
     }
 
     private fun initComponents() {
-        binding.backClickView.setOnClickListener {
-            findNavController().navigateUp()
-        }
         initDigitView()
         ListenToButton()
+
+        // Check if Device have a fingerprint option
+        if (!BiometricManagerUtil.hasBiometricAuthenticator(requireContext())) {
+            hideFingerPrintSection()
+        }
+
+        secretCode = ModelPreferencesManager.get<String>(APP_PIN_CODE).toString()
+
+        binding.fingerprintIv.setOnClickListener {
+            BiometricManagerUtil.showPropBiometric(tahadeta.example.savedcards.MainActivity.activityInstance, false)
+        }
+    }
+
+    private fun hideFingerPrintSection() {
+        binding.fingerprintIv.visibility = View.GONE
+        binding.fingerprintIv.visibility = View.GONE
     }
 
     // function that listen to each click and add the digit which the user had clicked on
@@ -111,32 +138,34 @@ class PinCodeFragment : Fragment() {
             // in case of tapping the digit number 4
             // we should verify the code
             checkCountDigit()
-            if (isFirstStep) {
-                secretCode = getDigitActual()
-                isFirstStep = false
-                isEnabledkeyboard = false
-                Handler().postDelayed({
-                    try {
-                        initDigitView()
-                        isEnabledkeyboard = true
-                    } catch (e: java.lang.Exception) {
-                        // Catch in case of changing UI and can't find the id of the UIView
-                        Log.d("TestCatch", "Catched")
-                    }
-                }, 500)
+            if (secretCode == getDigitActual()) {
+                animateLoader()
             } else {
-                if (secretCode == getDigitActual()) {
-                    registerPassword()
-                } else {
-                    behaviorWrongPassword()
-                }
+                behaviorWrongPassword()
             }
         }
     }
 
-    private fun registerPassword() {
-        ModelPreferencesManager.put<String>(getDigitActual(), APP_PIN_CODE)
-        findNavController().navigate(R.id.homeFragment)
+    private fun animateLoader() {
+        isCorrect = true
+        binding.animateBg.visibility = View.VISIBLE
+        binding.animationLoading.visibility = View.VISIBLE
+
+        binding.animationLoading.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator) {
+                // noth
+            }
+
+            override fun onAnimationEnd(animation: Animator) {
+            }
+
+            override fun onAnimationCancel(animation: Animator) {
+            }
+
+            override fun onAnimationRepeat(animation: Animator) {
+                if (isCorrect) findNavController().navigate(R.id.homeFragment)
+            }
+        })
     }
 
     // function that remove the last digit entered
@@ -237,12 +266,6 @@ class PinCodeFragment : Fragment() {
     private fun initDigitView() {
         // we set the counter to initial value
         initDigitAndCounter()
-        if (isFirstStep) {
-            AnimationUtil.changeTextContent(binding.confirmerPasswordTv, "Enter The Pin Code")
-        } else {
-            AnimationUtil.changeTextContent(binding.confirmerPasswordTv, "Enter The Same Pin Code")
-        }
-        binding.confirmerPasswordTv.setTextColor(Color.parseColor("#e0f7fa"))
 
         binding.digitOne.background = context?.let {
             ContextCompat.getDrawable(
@@ -281,22 +304,46 @@ class PinCodeFragment : Fragment() {
 
     // function that do the UI behavior in wrong secret code case
     private fun behaviorWrongPassword() {
-        binding.mainCl.isEnabled = false
-        fillWrongPassword()
-        AnimationUtil.changeTextContent(binding.confirmerPasswordTv, "Wrong")
-        binding.confirmerPasswordTv.setTextColor(Color.parseColor("#EE815E"))
+        isCorrect = false
 
-        // Make a delay then init the view and let the user
-        // Enter again the secret code
-        Handler().postDelayed({
-            try {
-                initDigitView()
-                binding.mainCl.isEnabled = true
-            } catch (e: java.lang.Exception) {
-                // Catch in case of changing UI and can't find the id of the UIView
-                Log.d("TestCatch", "Catched")
+        binding.animateBg.visibility = View.VISIBLE
+        binding.animationLoading.visibility = View.VISIBLE
+
+        binding.animationLoading.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator) {
+                // noth
             }
-        }, 2000)
+
+            override fun onAnimationEnd(animation: Animator) {
+            }
+
+            override fun onAnimationCancel(animation: Animator) {
+            }
+
+            override fun onAnimationRepeat(animation: Animator) {
+                if (!isCorrect) {
+                    binding.wrongPassword.visibility = View.VISIBLE
+                    binding.animateBg.visibility = View.GONE
+                    binding.animationLoading.visibility = View.GONE
+
+                    binding.mainCl.isEnabled = false
+                    fillWrongPassword()
+
+                    // Make a delay then init the view and let the user
+                    // Enter again the secret code
+                    Handler().postDelayed({
+                        try {
+                            binding.wrongPassword.visibility = View.GONE
+                            initDigitView()
+                            binding.mainCl.isEnabled = true
+                        } catch (e: java.lang.Exception) {
+                            // Catch in case of changing UI and can't find the id of the UIView
+                            Log.d("TestCatch", "Catched")
+                        }
+                    }, 800)
+                }
+            }
+        })
     }
 
     // function that change the UI view to show the error in case of wrong secret code
@@ -328,5 +375,14 @@ class PinCodeFragment : Fragment() {
                 R.drawable.password_rounded_wrong
             )
         }
+    }
+
+    fun navigateToHome() {
+        tahadeta.example.savedcards.MainActivity.activityInstance.findNavController(R.id.nav_host_fragment)
+            .popBackStack(
+                R.id.loginFragment,
+                true
+            )
+        findNavController().navigate(R.id.homeFragment)
     }
 }

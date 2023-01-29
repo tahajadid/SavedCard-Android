@@ -11,18 +11,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import tahadeta.example.savedcards.MainActivity
-import com.example.savedcards.R
-import tahadeta.example.savedcards.data.CardInfo
-import tahadeta.example.savedcards.data.Cards
-import com.example.savedcards.databinding.FragmentHomeBinding
-import com.example.savedcards.ui.home.adapters.ListCardAdapter
-import com.example.savedcards.ui.home.adapters.ListShortcutAdapter
-import com.example.savedcards.util.Constants.APP_PIN_CODE
-import com.example.savedcards.util.Constants.LIST_OF_SHORTCUTS
-import com.example.savedcards.util.Constants.MY_CARDS
-import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
-import com.example.savedcards.util.mySessionCards
+import tahadeta.example.savedcards.R
+import tahadeta.example.savedcards.databinding.FragmentHomeBinding
+import tahadeta.example.savedcards.ui.home.adapters.ListCardAdapter
+import tahadeta.example.savedcards.ui.home.adapters.ListShortcutAdapter
+import tahadeta.example.savedcards.util.Constants.APP_PIN_CODE
+import tahadeta.example.savedcards.util.Constants.LIST_OF_SHORTCUTS
+import tahadeta.example.savedcards.util.Constants.MY_CARDS
+import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
+import tahadeta.example.savedcards.util.mySessionCards
 
 class HomeFragment : Fragment() {
 
