@@ -1,18 +1,20 @@
-package com.example.savedcards.ui.home
+package tahadeta.example.savedcards.ui.home
 
 import android.content.Context
 import android.os.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.savedcards.MainActivity
+import tahadeta.example.savedcards.MainActivity
 import com.example.savedcards.R
-import com.example.savedcards.data.CardInfo
-import com.example.savedcards.data.Cards
+import tahadeta.example.savedcards.data.CardInfo
+import tahadeta.example.savedcards.data.Cards
 import com.example.savedcards.databinding.FragmentHomeBinding
 import com.example.savedcards.ui.home.adapters.ListCardAdapter
 import com.example.savedcards.ui.home.adapters.ListShortcutAdapter
@@ -45,7 +47,14 @@ class HomeFragment : Fragment() {
             false
         )
 
+        val window: Window = requireActivity().window
+        if (window != null) {
+            window.setStatusBarColor(ContextCompat.getColor(requireActivity(), R.color.cyan_800))
+            window.navigationBarColor = ContextCompat.getColor(requireActivity(), R.color.black)
+        }
+
         initComponent()
+
         return binding.root
     }
 
@@ -103,7 +112,7 @@ class HomeFragment : Fragment() {
 
     private fun initListCards() {
         binding.emptyListView.visibility = View.VISIBLE
-        val myCards = ModelPreferencesManager.get<Cards>(MY_CARDS)
+        val myCards = ModelPreferencesManager.get<tahadeta.example.savedcards.data.Cards>(MY_CARDS)
         if (myCards != null) {
             mySessionCards = myCards
 
@@ -114,7 +123,7 @@ class HomeFragment : Fragment() {
                 showEmptyList()
             } else {
                 hideEmptyList()
-                listCardAdapter = ListCardAdapter(context, mySessionCards?.listOfCards as ArrayList<CardInfo>)
+                listCardAdapter = ListCardAdapter(context, mySessionCards?.listOfCards as ArrayList<tahadeta.example.savedcards.data.CardInfo>)
 
                 binding.cardList.apply {
                     layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -125,7 +134,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun vibratePhone() {
-        val vibrator = MainActivity.activityInstance.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        val vibrator = tahadeta.example.savedcards.MainActivity.activityInstance.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         if (vibrator.hasVibrator()) { // Vibrator availability checking
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE)) // New vibrate method for API Level 26 or higher

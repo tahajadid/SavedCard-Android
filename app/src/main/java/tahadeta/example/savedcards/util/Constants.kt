@@ -1,6 +1,6 @@
-package com.example.savedcards.util
+package tahadeta.example.savedcards.util
 
-import com.example.savedcards.data.Shortcut
+import tahadeta.example.savedcards.data.Shortcut
 
 object Constants {
 
@@ -8,17 +8,17 @@ object Constants {
     const val VISACARD_TYPE = "VISACARD_TYPE"
 
     val LIST_OF_SHORTCUTS = arrayListOf(
-        Shortcut(
-            "Scan your card",
-            "0",
-            false
-        ),
-        Shortcut(
+        tahadeta.example.savedcards.data.Shortcut(
             "Secure the app access",
-            "1",
+            "0",
             true
         ),
-        Shortcut(
+        tahadeta.example.savedcards.data.Shortcut(
+            "Scan your card",
+            "1",
+            false
+        ),
+        tahadeta.example.savedcards.data.Shortcut(
             "Application info",
             "2",
             false

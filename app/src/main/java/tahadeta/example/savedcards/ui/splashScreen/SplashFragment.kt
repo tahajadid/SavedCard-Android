@@ -1,10 +1,12 @@
-package com.example.savedcards.ui.splashScreen
+package tahadeta.example.savedcards.ui.splashScreen
 
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -12,6 +14,7 @@ import com.example.savedcards.R
 import com.example.savedcards.databinding.FragmentSplashBinding
 import com.example.savedcards.util.Constants
 import com.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
+import com.example.spicyanimation.SpicyAnimation
 
 class SplashFragment : Fragment() {
 
@@ -39,11 +42,26 @@ class SplashFragment : Fragment() {
     }
 
     private fun initComponents() {
-        val getPinCreated = ModelPreferencesManager.get<String>(Constants.APP_PIN_CODE)
-        if (getPinCreated == null) {
-            findNavController().navigate(R.id.homeFragment)
-        } else {
-            findNavController().navigate(R.id.loginFragment)
+        binding.imageView10.visibility = View.VISIBLE
+        binding.enterInfo.visibility = View.VISIBLE
+
+        val window: Window = requireActivity().window
+
+        if (window != null) {
+            window.setStatusBarColor(ContextCompat.getColor(requireActivity(), R.color.cyan_25))
+            window.navigationBarColor = ContextCompat.getColor(requireActivity(), R.color.cyan_25)
         }
+
+        SpicyAnimation().fadeToUp(binding.imageView10, 60F, 1600)
+        SpicyAnimation().fadeToRight(binding.enterInfo, 60F, 1600)
+
+        Handler().postDelayed({
+            val getPinCreated = ModelPreferencesManager.get<String>(Constants.APP_PIN_CODE)
+            if (getPinCreated == null) {
+                findNavController().navigate(R.id.homeFragment)
+            } else {
+                findNavController().navigate(R.id.loginFragment)
+            }
+        }, 2500)
     }
 }
