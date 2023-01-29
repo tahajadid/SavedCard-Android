@@ -50,6 +50,12 @@ class HomeFragment : Fragment() {
             window.navigationBarColor = ContextCompat.getColor(requireActivity(), R.color.black)
         }
 
+
+        val getPinCreated = ModelPreferencesManager.get<String>(APP_PIN_CODE)
+        if (getPinCreated == null) {
+            findNavController().navigate(R.id.pinCodeFragment)
+        }
+
         initComponent()
 
         return binding.root
