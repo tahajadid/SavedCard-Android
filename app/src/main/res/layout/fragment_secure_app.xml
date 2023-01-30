@@ -160,13 +160,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/tulisans"
-                    android:text="The application is totally used in offline mode, so the user can add the information only in the cache of the phone and no third party is included.\nAll the information are secured by :\n 1. Pin created by the user\n 2.Encryption of the information stored on the cache of the phone\n 3.Obfuscation of the code to prevent any external problem"
+                    android:text="The application is totally used in offline mode, so the user can add the information only in the cache of the phone, no third party is included.\nWe include a technology of encryption the data to avoid any person to know the credential in case of phone stolen"
                     android:textColor="@color/cyan_600"
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/title3" />
 
+                <!--
                 <TextView
                     android:id="@+id/title4"
                     android:layout_width="wrap_content"
@@ -198,6 +199,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/title4" />
 
+                    -->
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>

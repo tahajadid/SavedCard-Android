@@ -66,5 +66,10 @@
         android:name="tahadeta.example.savedcards.ui.setting.changePin.ChangePinFragment"
         android:label="fragment_change_pin"
         tools:layout="@layout/fragment_change_pin" />
+    <fragment
+        android:id="@+id/appInfoFragment"
+        android:name="tahadeta.example.savedcards.ui.home.appInfo.AppInfoFragment"
+        android:label="fragment_app_info"
+        tools:layout="@layout/fragment_app_info" />
 
 </navigation>
