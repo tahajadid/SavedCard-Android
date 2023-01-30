@@ -37,8 +37,8 @@ class ListShortcutAdapter(
             title.text = item.title
             when (item.iconId?.toInt()) {
                 0 -> icon.setImageResource(R.drawable.secure_app_icon)
-                1 -> icon.setImageResource(R.drawable.scanner_card)
-                2 -> icon.setImageResource(R.drawable.info_icon)
+                1 -> icon.setImageResource(R.drawable.info_icon)
+                2 -> icon.setImageResource(R.drawable.scanner_card)
                 else -> icon.setImageResource(R.drawable.info_icon)
             }
 
@@ -47,8 +47,8 @@ class ListShortcutAdapter(
                 container.setOnClickListener {
                     when (item.iconId?.toInt()) {
                         0 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
-                        1 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
-                        2 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
+                        1 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.appInfoFragment)
+                        2 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.appInfoFragment)
                         else -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
                     }
                 }
@@ -57,7 +57,7 @@ class ListShortcutAdapter(
                 container.setOnClickListener {
                     Toast.makeText(
                         tahadeta.example.savedcards.MainActivity.activityInstance,
-                        "Feature available on next release 1.0",
+                        "Feature available on next release",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -8,17 +8,30 @@ object Constants {
     const val VISACARD_TYPE = "VISACARD_TYPE"
 
     val LIST_OF_SHORTCUTS = arrayListOf(
-        tahadeta.example.savedcards.data.Shortcut(
+        Shortcut(
             "Secure the app access",
             "0",
             true
         ),
-        tahadeta.example.savedcards.data.Shortcut(
+        Shortcut(
+            "Application info",
+            "1",
+            true
+        )
+    )
+
+    val LIST_OF_LAST_SHORTCUTS = arrayListOf(
+        Shortcut(
+            "Secure the app access",
+            "0",
+            true
+        ),
+        Shortcut(
             "Scan your card",
             "1",
             false
         ),
-        tahadeta.example.savedcards.data.Shortcut(
+        Shortcut(
             "Application info",
             "2",
             false
@@ -30,7 +43,6 @@ object Constants {
      */
     const val FIRST_STEP = "FIRST_STEP"
     const val SECOND_STEP = "SECOND_STEP"
-    const val LAST_STEP = "LAST_STEP"
 
     /**
      * SaredPref Var:
