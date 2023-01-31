@@ -12,10 +12,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import tahadeta.example.savedcards.R
+import tahadeta.example.savedcards.data.Profiles
 import tahadeta.example.savedcards.databinding.FragmentPinCodeBinding
-import tahadeta.example.savedcards.util.Constants.APP_PIN_CODE
+import tahadeta.example.savedcards.util.* // ktlint-disable no-wildcard-imports
 import tahadeta.example.savedcards.util.animationUtil.AnimationUtil
 import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
+import tahadeta.example.savedcards.util.mySessionProfiles
 
 class PinCodeFragment : Fragment() {
 
@@ -52,9 +54,10 @@ class PinCodeFragment : Fragment() {
     }
 
     private fun initComponents() {
-        binding.backClickView.setOnClickListener {
+        binding.back.setOnClickListener {
             findNavController().navigateUp()
         }
+
         initDigitView()
         ListenToButton()
     }
@@ -126,7 +129,7 @@ class PinCodeFragment : Fragment() {
                 }, 500)
             } else {
                 if (secretCode == getDigitActual()) {
-                    registerPassword()
+                    registerProfile()
                 } else {
                     behaviorWrongPassword()
                 }
@@ -134,8 +137,22 @@ class PinCodeFragment : Fragment() {
         }
     }
 
-    private fun registerPassword() {
-        ModelPreferencesManager.put<String>(getDigitActual(), APP_PIN_CODE)
+    private fun registerProfile() {
+        val myProfiles = ModelPreferencesManager.get<Profiles>(Constants.MY_PROFILES)
+        if (myProfiles == null) {
+            // First init
+            mySessionProfiles = Profiles(arrayListOf())
+            addedProfile.id = "0"
+        } else {
+            addedProfile.id = myProfiles.listOfProfiles.size.toString()
+            mySessionProfiles = myProfiles
+        }
+        addedProfile.pin = getDigitActual()
+
+        mySessionProfiles!!.listOfProfiles.add(addedProfile!!)
+        ModelPreferencesManager
+            .put(mySessionProfiles as Profiles, Constants.MY_PROFILES)
+
         findNavController().navigate(R.id.homeFragment)
     }
 

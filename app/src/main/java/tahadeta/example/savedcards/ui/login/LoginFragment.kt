@@ -15,9 +15,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import tahadeta.example.savedcards.R
 import tahadeta.example.savedcards.databinding.FragmentLoginBinding
-import tahadeta.example.savedcards.util.Constants.APP_PIN_CODE
 import tahadeta.example.savedcards.util.biometricManagerUtil.BiometricManagerUtil
-import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
+import tahadeta.example.savedcards.util.connectedProfile
+import tahadeta.example.savedcards.util.mySessionProfiles
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -73,8 +73,7 @@ class LoginFragment : Fragment() {
         if (!BiometricManagerUtil.hasBiometricAuthenticator(requireContext())) {
             hideFingerPrintSection()
         }
-
-        secretCode = ModelPreferencesManager.get<String>(APP_PIN_CODE).toString()
+        secretCode = connectedProfile.pin.toString()
 
         binding.fingerprintIv.setOnClickListener {
             BiometricManagerUtil.showPropBiometric(tahadeta.example.savedcards.MainActivity.activityInstance, false)

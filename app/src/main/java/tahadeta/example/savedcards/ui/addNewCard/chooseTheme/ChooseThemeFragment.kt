@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
@@ -18,7 +19,9 @@ import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.textfield.TextInputEditText
 import tahadeta.example.savedcards.R
+import tahadeta.example.savedcards.data.Cards
 import tahadeta.example.savedcards.ui.addNewCard.chooseTheme.adapter.CarouselCardAdapter
+import tahadeta.example.savedcards.util.Constants
 import tahadeta.example.savedcards.util.Constants.MY_CARDS
 import tahadeta.example.savedcards.util.currentCard
 import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
@@ -33,6 +36,7 @@ class ChooseThemeFragment : Fragment() {
     lateinit var numberTv: TextView
     lateinit var nameTv: TextView
     lateinit var dateTv: TextView
+    lateinit var cardType: ImageView
 
     lateinit var cardTitle: TextInputEditText
     lateinit var bgTitle: ConstraintLayout
@@ -63,6 +67,7 @@ class ChooseThemeFragment : Fragment() {
         cardTitle = root.findViewById(R.id.label_editText)
         bgTitle = root.findViewById(R.id.label_container)
         cardTitleError = root.findViewById(R.id.error_card_title)
+        cardType = root.findViewById(R.id.mastercard)
 
         listenToView()
         return root
@@ -89,14 +94,14 @@ class ChooseThemeFragment : Fragment() {
     private fun navigateToSuccess() {
         currentCard?.title = cardTitle.text.toString()
 
-        val myCards = ModelPreferencesManager.get<tahadeta.example.savedcards.data.Cards>(MY_CARDS)
+        val myCards = ModelPreferencesManager.get<Cards>(MY_CARDS)
         if (myCards == null) {
             // First init
-            mySessionCards = tahadeta.example.savedcards.data.Cards(arrayListOf())
+            mySessionCards = Cards(arrayListOf())
         } else mySessionCards = myCards
         mySessionCards!!.listOfCards.add(currentCard!!)
         ModelPreferencesManager
-            .put<tahadeta.example.savedcards.data.Cards>(mySessionCards as tahadeta.example.savedcards.data.Cards, MY_CARDS)
+            .put(mySessionCards as Cards, MY_CARDS)
         findNavController().navigate(R.id.homeFragment)
     }
 
@@ -107,6 +112,7 @@ class ChooseThemeFragment : Fragment() {
         dateTv.text = currentCard!!.expirationMonth.toString() +
             "/" +
             currentCard!!.expirationYear.toString().drop(2)
+        if (currentCard!!.cardType.equals(Constants.VISACARD_TYPE)) cardType.setImageResource(R.drawable.visa_logo)
     }
 
     private fun initViewPager() {
