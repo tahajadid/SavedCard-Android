@@ -73,12 +73,12 @@
         tools:layout="@layout/fragment_app_info" />
     <fragment
         android:id="@+id/firstOnboardingFragment"
-        android:name="tahadeta.example.savedcards.FirstOnboardingFragment"
+        android:name="tahadeta.example.savedcards.ui.onboarding.FirstOnboardingFragment"
         android:label="fragment_first_onboarding"
         tools:layout="@layout/fragment_first_onboarding" />
     <fragment
         android:id="@+id/secondOnboardingFragment"
-        android:name="tahadeta.example.savedcards.SecondOnboardingFragment"
+        android:name="tahadeta.example.savedcards.ui.onboarding.SecondOnboardingFragment"
         android:label="fragment_second_onboarding"
         tools:layout="@layout/fragment_second_onboarding" />
     <fragment

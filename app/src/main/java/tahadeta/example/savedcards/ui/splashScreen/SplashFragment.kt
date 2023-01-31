@@ -14,6 +14,7 @@ import com.example.spicyanimation.SpicyAnimation
 import tahadeta.example.savedcards.R
 import tahadeta.example.savedcards.databinding.FragmentSplashBinding
 import tahadeta.example.savedcards.util.Constants.APP_PIN_CODE
+import tahadeta.example.savedcards.util.Constants.ONBOARDING
 import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 
 class SplashFragment : Fragment() {
@@ -58,7 +59,12 @@ class SplashFragment : Fragment() {
         Handler().postDelayed({
             val getPinCreated = ModelPreferencesManager.get<String>(APP_PIN_CODE)
             if (getPinCreated == null) {
-                findNavController().navigate(R.id.homeFragment)
+                val demo = ModelPreferencesManager.get<Boolean>(ONBOARDING)
+                if (demo == null) {
+                    findNavController().navigate(R.id.firstOnboardingFragment)
+                } else {
+                    findNavController().navigate(R.id.homeFragment)
+                }
             } else {
                 findNavController().navigate(R.id.loginFragment)
             }

@@ -9,13 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import tahadeta.example.savedcards.R
-import tahadeta.example.savedcards.databinding.FragmentThirdOnboardingBinding
-import tahadeta.example.savedcards.util.Constants
-import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
+import tahadeta.example.savedcards.databinding.FragmentSecondOnboardingBinding
 
-class ThirdOnboardingFragment : Fragment() {
+class SecondOnboardingFragment : Fragment() {
 
-    private lateinit var binding: FragmentThirdOnboardingBinding
+    private lateinit var binding: FragmentSecondOnboardingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +29,7 @@ class ThirdOnboardingFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_third_onboarding,
+            R.layout.fragment_second_onboarding,
             container,
             false
         )
@@ -43,8 +41,7 @@ class ThirdOnboardingFragment : Fragment() {
 
     private fun initComponents() {
         binding.nextBtn.setOnClickListener {
-            findNavController().navigate(R.id.pinCodeFragment)
-            ModelPreferencesManager.put<Boolean>(true, Constants.ONBOARDING)
+            findNavController().navigate(R.id.thirdOnboardingFragment)
         }
 
         binding.back.setOnClickListener {
