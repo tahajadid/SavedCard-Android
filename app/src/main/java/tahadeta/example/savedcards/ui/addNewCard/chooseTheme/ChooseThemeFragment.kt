@@ -19,6 +19,7 @@ import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.google.android.material.textfield.TextInputEditText
 import tahadeta.example.savedcards.R
+import tahadeta.example.savedcards.data.Cards
 import tahadeta.example.savedcards.ui.addNewCard.chooseTheme.adapter.CarouselCardAdapter
 import tahadeta.example.savedcards.util.Constants
 import tahadeta.example.savedcards.util.Constants.MY_CARDS
@@ -93,14 +94,14 @@ class ChooseThemeFragment : Fragment() {
     private fun navigateToSuccess() {
         currentCard?.title = cardTitle.text.toString()
 
-        val myCards = ModelPreferencesManager.get<tahadeta.example.savedcards.data.Cards>(MY_CARDS)
+        val myCards = ModelPreferencesManager.get<Cards>(MY_CARDS)
         if (myCards == null) {
             // First init
-            mySessionCards = tahadeta.example.savedcards.data.Cards(arrayListOf())
+            mySessionCards = Cards(arrayListOf())
         } else mySessionCards = myCards
         mySessionCards!!.listOfCards.add(currentCard!!)
         ModelPreferencesManager
-            .put<tahadeta.example.savedcards.data.Cards>(mySessionCards as tahadeta.example.savedcards.data.Cards, MY_CARDS)
+            .put(mySessionCards as Cards, MY_CARDS)
         findNavController().navigate(R.id.homeFragment)
     }
 

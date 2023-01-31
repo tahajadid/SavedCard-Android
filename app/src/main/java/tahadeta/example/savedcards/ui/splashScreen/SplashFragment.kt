@@ -12,10 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.spicyanimation.SpicyAnimation
 import tahadeta.example.savedcards.R
+import tahadeta.example.savedcards.data.Profiles
 import tahadeta.example.savedcards.databinding.FragmentSplashBinding
-import tahadeta.example.savedcards.util.Constants.APP_PIN_CODE
+import tahadeta.example.savedcards.util.Constants
 import tahadeta.example.savedcards.util.Constants.ONBOARDING
+import tahadeta.example.savedcards.util.connectedProfile
 import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
+import tahadeta.example.savedcards.util.mySessionProfiles
 
 class SplashFragment : Fragment() {
 
@@ -57,8 +60,10 @@ class SplashFragment : Fragment() {
         SpicyAnimation().fadeToRight(binding.enterInfo, 60F, 1600)
 
         Handler().postDelayed({
-            val getPinCreated = ModelPreferencesManager.get<String>(APP_PIN_CODE)
-            if (getPinCreated == null) {
+            val myProfiles = ModelPreferencesManager.get<Profiles>(
+                Constants.MY_PROFILES
+            )
+            if (myProfiles == null) {
                 val demo = ModelPreferencesManager.get<Boolean>(ONBOARDING)
                 if (demo == null) {
                     findNavController().navigate(R.id.firstOnboardingFragment)
@@ -66,6 +71,8 @@ class SplashFragment : Fragment() {
                     findNavController().navigate(R.id.homeFragment)
                 }
             } else {
+                mySessionProfiles = myProfiles
+                connectedProfile = myProfiles.listOfProfiles[0]
                 findNavController().navigate(R.id.loginFragment)
             }
         }, 2500)

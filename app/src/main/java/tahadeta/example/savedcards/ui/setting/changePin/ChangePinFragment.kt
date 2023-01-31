@@ -12,11 +12,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import tahadeta.example.savedcards.R
+import tahadeta.example.savedcards.data.Profiles
 import tahadeta.example.savedcards.databinding.FragmentChangePinBinding
 import tahadeta.example.savedcards.util.Constants.APP_PIN_CODE
 import tahadeta.example.savedcards.util.Constants.FIRST_STEP
+import tahadeta.example.savedcards.util.Constants.MY_PROFILES
 import tahadeta.example.savedcards.util.Constants.SECOND_STEP
 import tahadeta.example.savedcards.util.animationUtil.AnimationUtil
+import tahadeta.example.savedcards.util.connectedProfile
 import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 import tahadeta.example.savedcards.util.stepPinCodeFragment
 
@@ -117,7 +120,7 @@ class ChangePinFragment : Fragment() {
             // we should verify the code
             checkCountDigit()
             if (stepPinCodeFragment.equals(FIRST_STEP)) {
-                secretCode = ModelPreferencesManager.get<String>(APP_PIN_CODE).toString()
+                secretCode = connectedProfile.pin.toString()
                 if (secretCode == getDigitActual()) {
                     animateLoader()
                 } else {
@@ -159,7 +162,7 @@ class ChangePinFragment : Fragment() {
     }
 
     private fun registerPassword() {
-        ModelPreferencesManager.put(getDigitActual(),APP_PIN_CODE)
+        changePinOfProfile(connectedProfile.id)
 
         binding.animateBg.visibility = View.VISIBLE
         binding.animationLoading.visibility = View.VISIBLE
@@ -168,6 +171,15 @@ class ChangePinFragment : Fragment() {
             stepPinCodeFragment = FIRST_STEP
             findNavController().navigate(R.id.homeFragment)
         }, 1000) // 3000 is the delayed time in milliseconds.
+    }
+
+    private fun changePinOfProfile(idProfile: String?) {
+        ModelPreferencesManager.put(getDigitActual(), APP_PIN_CODE)
+
+        val myProfiles = ModelPreferencesManager.get<Profiles>(MY_PROFILES)
+        myProfiles!!.listOfProfiles[idProfile!!.toInt()].pin = getDigitActual()
+
+        ModelPreferencesManager.put(myProfiles, MY_PROFILES)
     }
 
     // function that remove the last digit entered

@@ -15,7 +15,6 @@ import tahadeta.example.savedcards.R
 import tahadeta.example.savedcards.databinding.FragmentHomeBinding
 import tahadeta.example.savedcards.ui.home.adapters.ListCardAdapter
 import tahadeta.example.savedcards.ui.home.adapters.ListShortcutAdapter
-import tahadeta.example.savedcards.util.Constants.APP_PIN_CODE
 import tahadeta.example.savedcards.util.Constants.LIST_OF_SHORTCUTS
 import tahadeta.example.savedcards.util.Constants.MY_CARDS
 import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
@@ -26,7 +25,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var listCardAdapter: ListCardAdapter
     private lateinit var listShortcutAdapter: ListShortcutAdapter
-    private lateinit var pinCreated: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,34 +48,23 @@ class HomeFragment : Fragment() {
             window.navigationBarColor = ContextCompat.getColor(requireActivity(), R.color.black)
         }
 
-
-        val getPinCreated = ModelPreferencesManager.get<String>(APP_PIN_CODE)
-        if (getPinCreated == null) {
-            findNavController().navigate(R.id.pinCodeFragment)
-        }
-
         initComponent()
 
         return binding.root
     }
 
     private fun initComponent() {
-        checkPinCreated()
+        // checkPinCreated()
         initListCards()
         initListShortcuts()
+        shakeAdd()
 
         binding.addView.setOnClickListener {
-            if (pinCreated.isNullOrEmpty()) {
-                vibratePhone()
-                shakePinLayout()
-            } else findNavController().navigate(R.id.addInfoCardFragment)
+            findNavController().navigate(R.id.addInfoCardFragment)
         }
 
         binding.emptyListView.setOnClickListener {
-            if (pinCreated.isNullOrEmpty()) {
-                vibratePhone()
-                shakePinLayout()
-            } else findNavController().navigate(R.id.addInfoCardFragment)
+            findNavController().navigate(R.id.addInfoCardFragment)
         }
 
         binding.bottomLeftView.setOnClickListener {
@@ -90,18 +77,6 @@ class HomeFragment : Fragment() {
 
         binding.createPinCl.setOnClickListener {
             findNavController().navigate(R.id.pinCodeFragment)
-        }
-    }
-
-    private fun checkPinCreated() {
-        val getPinCreated = ModelPreferencesManager.get<String>(APP_PIN_CODE)
-        if (getPinCreated == null) {
-            pinCreated = ""
-            shakePinLayout()
-            binding.createPinCl.visibility = View.VISIBLE
-        } else {
-            binding.createPinCl.visibility = View.GONE
-            pinCreated = getPinCreated
         }
     }
 
@@ -147,11 +122,20 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun shakePinLayout() {
-        binding.createPinCl.animate().scaleX(0.9f).scaleY(0.9f).setDuration(400).start()
+    private fun shakeAdd() {
+        binding.addView.animate().scaleX(0.9f).scaleY(0.9f).setDuration(400).start()
         Handler().postDelayed({
-            binding.createPinCl.animate().scaleX(1f).scaleY(1f).setDuration(400).start()
+            binding.addView.animate().scaleX(1f).scaleY(1f).setDuration(400).start()
         }, 500)
+
+        binding.addBackView.animate().scaleX(0.9f).scaleY(0.9f).setDuration(600).start()
+        Handler().postDelayed({
+            binding.addBackView.animate().scaleX(1f).scaleY(1f).setDuration(600).start()
+        }, 500)
+
+        Handler().postDelayed({
+            shakeAdd()
+        }, 1100)
     }
 
     private fun showEmptyList() {

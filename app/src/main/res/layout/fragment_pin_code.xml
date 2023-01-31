@@ -15,83 +15,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent">
 
-        <!-- Top View-->
 
-        <View
-            android:id="@+id/back_click_view"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="-10dp"
-            android:background="@drawable/back_icon_top_bg"
-            app:layout_constraintEnd_toEndOf="@+id/enter_info"
-            app:layout_constraintStart_toStartOf="@+id/back_view"
-            app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/back_view"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="20dp"
-            android:elevation="10dp"
-            android:background="@drawable/back_icon_bg"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/back_icon"
-            android:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/back_view"
-            app:layout_constraintEnd_toEndOf="@+id/back_view"
-            app:layout_constraintStart_toStartOf="@+id/back_view"
-            app:layout_constraintTop_toTopOf="@+id/back_view" />
-
-        <TextView
-            android:id="@+id/enter_info"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:fontFamily="@font/tulisans"
-            android:text="Create Your Pin Code For The App"
-            android:textColor="@color/cyan_800"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="@+id/back_view"
-            app:layout_constraintStart_toEndOf="@+id/back_view"
-            app:layout_constraintTop_toTopOf="@+id/back_view" />
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.12" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.33" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.12" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.40" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.33" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.40" />
-
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.48" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.48" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -351,6 +303,16 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:padding="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/left_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

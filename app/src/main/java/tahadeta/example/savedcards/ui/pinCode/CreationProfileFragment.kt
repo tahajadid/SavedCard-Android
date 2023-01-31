@@ -1,4 +1,4 @@
-package tahadeta.example.savedcards.ui.onboarding
+package tahadeta.example.savedcards.ui.pinCode
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,20 +7,16 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.transition.TransitionInflater
 import tahadeta.example.savedcards.R
-import tahadeta.example.savedcards.databinding.FragmentThirdOnboardingBinding
-import tahadeta.example.savedcards.util.Constants
-import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
+import tahadeta.example.savedcards.databinding.FragmentCreationProfileBinding
+import tahadeta.example.savedcards.util.addedProfile
 
-class ThirdOnboardingFragment : Fragment() {
+class CreationProfileFragment : Fragment() {
 
-    private lateinit var binding: FragmentThirdOnboardingBinding
+    private lateinit var binding: FragmentCreationProfileBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val inflater = TransitionInflater.from(requireContext())
-        exitTransition = inflater.inflateTransition(R.transition.fade)
     }
 
     override fun onCreateView(
@@ -28,10 +24,9 @@ class ThirdOnboardingFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_third_onboarding,
+            R.layout.fragment_creation_profile,
             container,
             false
         )
@@ -43,8 +38,8 @@ class ThirdOnboardingFragment : Fragment() {
 
     private fun initComponents() {
         binding.nextBtn.setOnClickListener {
-            findNavController().navigate(R.id.creationProfileFragment)
-            ModelPreferencesManager.put<Boolean>(true, Constants.ONBOARDING)
+            addedProfile.name = binding.nameEditText.text.toString()
+            findNavController().navigate(R.id.pinCodeFragment)
         }
 
         binding.back.setOnClickListener {

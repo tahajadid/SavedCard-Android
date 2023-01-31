@@ -86,5 +86,10 @@
         android:name="tahadeta.example.savedcards.ui.onboarding.ThirdOnboardingFragment"
         android:label="fragment_third_onboarding"
         tools:layout="@layout/fragment_third_onboarding" />
+    <fragment
+        android:id="@+id/creationProfileFragment"
+        android:name="tahadeta.example.savedcards.ui.pinCode.CreationProfileFragment"
+        android:label="fragment_creation_profile"
+        tools:layout="@layout/fragment_creation_profile" />
 
 </navigation>

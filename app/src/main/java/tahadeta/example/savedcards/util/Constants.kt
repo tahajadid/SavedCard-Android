@@ -48,6 +48,7 @@ object Constants {
      * SaredPref Var:
      */
     const val MY_CARDS = "MY_CARDS"
+    const val MY_PROFILES = "MY_PROFILES"
     const val APP_PIN_CODE = "APP_PIN_CODE"
     const val BIOMETRIC_CREDENTIAL = "BIOMETRIC_CREDENTIAL"
     const val FINGERPRINT_ACTIVATED = "FINGERPRINT_ACTIVATED"
