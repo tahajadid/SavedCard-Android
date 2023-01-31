@@ -51,4 +51,5 @@ object Constants {
     const val APP_PIN_CODE = "APP_PIN_CODE"
     const val BIOMETRIC_CREDENTIAL = "BIOMETRIC_CREDENTIAL"
     const val FINGERPRINT_ACTIVATED = "FINGERPRINT_ACTIVATED"
+    const val ONBOARDING = "ONBOARDING"
 }
