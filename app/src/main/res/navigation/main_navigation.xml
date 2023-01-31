@@ -71,5 +71,20 @@
         android:name="tahadeta.example.savedcards.ui.home.appInfo.AppInfoFragment"
         android:label="fragment_app_info"
         tools:layout="@layout/fragment_app_info" />
+    <fragment
+        android:id="@+id/firstOnboardingFragment"
+        android:name="tahadeta.example.savedcards.FirstOnboardingFragment"
+        android:label="fragment_first_onboarding"
+        tools:layout="@layout/fragment_first_onboarding" />
+    <fragment
+        android:id="@+id/secondOnboardingFragment"
+        android:name="tahadeta.example.savedcards.SecondOnboardingFragment"
+        android:label="fragment_second_onboarding"
+        tools:layout="@layout/fragment_second_onboarding" />
+    <fragment
+        android:id="@+id/thirdOnboardingFragment"
+        android:name="tahadeta.example.savedcards.ThirdOnboardingFragment"
+        android:label="fragment_third_onboarding"
+        tools:layout="@layout/fragment_third_onboarding" />
 
 </navigation>
