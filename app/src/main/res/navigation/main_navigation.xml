@@ -83,7 +83,7 @@
         tools:layout="@layout/fragment_second_onboarding" />
     <fragment
         android:id="@+id/thirdOnboardingFragment"
-        android:name="tahadeta.example.savedcards.ThirdOnboardingFragment"
+        android:name="tahadeta.example.savedcards.ui.onboarding.ThirdOnboardingFragment"
         android:label="fragment_third_onboarding"
         tools:layout="@layout/fragment_third_onboarding" />
 
