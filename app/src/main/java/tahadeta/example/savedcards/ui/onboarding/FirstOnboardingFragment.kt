@@ -4,18 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionInflater
 import tahadeta.example.savedcards.R
-import tahadeta.example.savedcards.databinding.FragmentThirdOnboardingBinding
-import tahadeta.example.savedcards.util.Constants
-import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
+import tahadeta.example.savedcards.databinding.FragmentFirstOnboardingBinding
 
-class ThirdOnboardingFragment : Fragment() {
+class FirstOnboardingFragment : Fragment() {
 
-    private lateinit var binding: FragmentThirdOnboardingBinding
+    private lateinit var binding: FragmentFirstOnboardingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +31,16 @@ class ThirdOnboardingFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_third_onboarding,
+            R.layout.fragment_first_onboarding,
             container,
             false
         )
+
+        val window: Window = requireActivity().window
+        if (window != null) {
+            window.setStatusBarColor(ContextCompat.getColor(requireActivity(), R.color.cyan_800))
+            window.navigationBarColor = ContextCompat.getColor(requireActivity(), R.color.cyan_800)
+        }
 
         initComponents()
 
@@ -43,12 +49,7 @@ class ThirdOnboardingFragment : Fragment() {
 
     private fun initComponents() {
         binding.nextBtn.setOnClickListener {
-            findNavController().navigate(R.id.pinCodeFragment)
-            ModelPreferencesManager.put<Boolean>(true, Constants.ONBOARDING)
-        }
-
-        binding.back.setOnClickListener {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.secondOnboardingFragment)
         }
     }
 }
