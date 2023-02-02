@@ -5,3 +5,6 @@ Saved Crads is an Android application developed with Native Android (Kotlin as p
 In This aplication we implemented a secure way to save the data in a privacy mode, and to avoid any attack the app works totally on offline mode.
 
 # Feature of the application
+
+* Add Profile with attached credit card information
+* Switch between Profiles added
