@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import tahadeta.example.savedcards.R
 import tahadeta.example.savedcards.databinding.FragmentProfileBinding
+import tahadeta.example.savedcards.util.connectedProfile
 
 class ProfileFragment : Fragment() {
 
@@ -37,6 +38,8 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initComponents() {
+        fillInformation()
+
         binding.backClickView.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -48,5 +51,17 @@ class ProfileFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+
+        binding.addView.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+        binding.bottomRightView.setOnClickListener {
+            findNavController().navigate(R.id.settingFragment)
+        }
+    }
+
+    private fun fillInformation() {
+        binding.profileName.text = connectedProfile.name
     }
 }
