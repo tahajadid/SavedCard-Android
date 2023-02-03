@@ -63,6 +63,14 @@ class SettingFragment : Fragment() {
             findNavController().navigate(R.id.changePinFragment)
         }
 
+        binding.addView.setOnClickListener {
+            findNavController().navigate(R.id.homeFragment)
+        }
+
+        binding.bottomLeftView.setOnClickListener {
+            findNavController().navigate(R.id.profileFragment)
+        }
+
         // Check if Device have a fingerprint option
         if (!BiometricManagerUtil.hasBiometricAuthenticator(requireContext())) {
             hideFingerPrintSection()

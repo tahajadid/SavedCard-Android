@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import tahadeta.example.savedcards.R
+import tahadeta.example.savedcards.data.CardInfo
 import tahadeta.example.savedcards.databinding.FragmentAddInfoCardBinding
 import tahadeta.example.savedcards.util.Constants.MASTERCARD_TYPE
 import tahadeta.example.savedcards.util.Constants.VISACARD_TYPE
@@ -118,7 +119,7 @@ class AddInfoCardFragment : Fragment() {
     }
 
     private fun fillCardInfo() {
-        currentCard = tahadeta.example.savedcards.data.CardInfo(
+        currentCard = CardInfo(
             "",
             binding.cardNumberEditText.text.toString().replace("\\s".toRegex(), ""),
             binding.nameEditText.text.toString(),

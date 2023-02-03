@@ -132,6 +132,7 @@ tools:context=".ui.cardDetails.CardDetailsFragment">
             android:layout_height="wrap_content"
             android:fontFamily="@font/tulisans"
             android:text="Title"
+            android:textAllCaps="true"
             android:layout_marginBottom="6dp"
             android:layout_marginStart="2dp"
             android:textColor="@color/cyan_800"
@@ -240,6 +241,7 @@ tools:context=".ui.cardDetails.CardDetailsFragment">
             android:layout_marginTop="10dp"
             android:background="@drawable/upload_theme_bg"
             android:padding="12dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/back_preview_view"
             app:layout_constraintTop_toBottomOf="@+id/back_preview_view">
 

@@ -48,14 +48,14 @@ class CardDetailsFragment : Fragment() {
 
     private fun initComponent() {
         binding.backPreviewView.visibility = View.INVISIBLE
-        binding.shareView.visibility = View.INVISIBLE
+        //binding.shareView.visibility = View.INVISIBLE
 
         SpicyAnimation().fadeToDown(binding.frontPreviewView, 30F, 800)
         SpicyAnimation().fadeToDown(binding.cardTitle, 30F, 800)
 
         Handler().postDelayed({
             binding.backPreviewView.visibility = View.VISIBLE
-            binding.shareView.visibility = View.VISIBLE
+            //binding.shareView.visibility = View.VISIBLE
         }, 800)
 
         Handler().postDelayed({
