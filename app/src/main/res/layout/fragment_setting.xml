@@ -79,6 +79,18 @@ tools:context=".ui.setting.SettingFragment">
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:alpha="0.2"
+            android:scaleType="center"
+            android:rotation="15"
+            android:src="@drawable/bg_lines"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fingerprint_cl"
             android:layout_width="0dp"
@@ -118,18 +130,6 @@ tools:context=".ui.setting.SettingFragment">
                 app:track="@drawable/track" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/setting"
-            android:layout_marginStart="-80dp"
-            android:layout_marginBottom="-40dp"
-            android:rotation="-25"
-            android:alpha="0.1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <!-- Bottom Navigation-->
         <View
@@ -176,7 +176,7 @@ tools:context=".ui.setting.SettingFragment">
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:padding="14dp"
-            android:src="@drawable/account_icon"
+            android:src="@drawable/profile"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/bottom_left_view"
             app:layout_constraintStart_toStartOf="parent"

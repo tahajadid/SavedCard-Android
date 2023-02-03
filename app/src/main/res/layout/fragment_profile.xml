@@ -14,6 +14,7 @@ tools:context=".ui.profile.ProfileFragment">
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent">
 
+
         <!-- Top View-->
 
         <View
@@ -49,12 +50,25 @@ tools:context=".ui.profile.ProfileFragment">
             android:fontFamily="@font/tulisans"
             android:text="Taha Jadid"
             android:textAllCaps="true"
+            android:elevation="10dp"
             android:textColor="@color/cyan_700"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="@+id/imageView11"
             app:layout_constraintStart_toStartOf="@+id/imageView11"
             app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:alpha="0.2"
+            android:scaleType="center"
+            android:rotation="15"
+            android:src="@drawable/bg_lines"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView11"
@@ -124,17 +138,7 @@ tools:context=".ui.profile.ProfileFragment">
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/account_icon"
-            android:layout_marginStart="-50dp"
-            android:layout_marginBottom="-40dp"
-            android:rotation="15"
-            android:alpha="0.1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+
 
         <!-- Bottom Navigation-->
         <View
@@ -181,7 +185,7 @@ tools:context=".ui.profile.ProfileFragment">
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:padding="14dp"
-            android:src="@drawable/account_fill_icon"
+            android:src="@drawable/profile_fill"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/bottom_left_view"
             app:layout_constraintStart_toStartOf="parent"
