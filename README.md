@@ -6,5 +6,5 @@ In This aplication we implemented a secure way to save the data in a privacy mod
 
 # Feature of the application
 
-* Add Profile with attached credit card information
+* Add Profile attached to numebrs of credit card
 * Switch between Profiles added
