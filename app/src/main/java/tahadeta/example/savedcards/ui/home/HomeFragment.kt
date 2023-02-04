@@ -15,8 +15,10 @@ import tahadeta.example.savedcards.R
 import tahadeta.example.savedcards.databinding.FragmentHomeBinding
 import tahadeta.example.savedcards.ui.home.adapters.ListCardAdapter
 import tahadeta.example.savedcards.ui.home.adapters.ListShortcutAdapter
-import tahadeta.example.savedcards.util.Constants.LIST_OF_SHORTCUTS
+import tahadeta.example.savedcards.util.Constants.FROM_HOME
+import tahadeta.example.savedcards.util.Constants.LIST_OF_LAST_SHORTCUTS
 import tahadeta.example.savedcards.util.Constants.MY_CARDS
+import tahadeta.example.savedcards.util.comeFrom
 import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 import tahadeta.example.savedcards.util.mySessionCards
 
@@ -58,6 +60,7 @@ class HomeFragment : Fragment() {
         initListCards()
         initListShortcuts()
         shakeAdd()
+        comeFrom = FROM_HOME
 
         binding.addView.setOnClickListener {
             findNavController().navigate(R.id.addInfoCardFragment)
@@ -81,7 +84,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initListShortcuts() {
-        listShortcutAdapter = ListShortcutAdapter(context, LIST_OF_SHORTCUTS)
+        listShortcutAdapter = ListShortcutAdapter(context, LIST_OF_LAST_SHORTCUTS)
         binding.shortcutList.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = listShortcutAdapter

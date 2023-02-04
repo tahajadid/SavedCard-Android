@@ -55,10 +55,6 @@ class SettingFragment : Fragment() {
             BiometricManagerUtil.showPropBiometricSetting(tahadeta.example.savedcards.MainActivity.activityInstance)
         }
 
-        binding.backClickView.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
-        }
-
         binding.passwordCl.setOnClickListener {
             findNavController().navigate(R.id.changePinFragment)
         }

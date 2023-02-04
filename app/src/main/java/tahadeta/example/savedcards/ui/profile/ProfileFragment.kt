@@ -40,10 +40,6 @@ class ProfileFragment : Fragment() {
     private fun initComponents() {
         fillInformation()
 
-        binding.backClickView.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
         binding.addProfile.setOnClickListener {
             Toast.makeText(
                 tahadeta.example.savedcards.MainActivity.activityInstance,

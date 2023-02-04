@@ -15,9 +15,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import tahadeta.example.savedcards.R
 import tahadeta.example.savedcards.databinding.FragmentLoginBinding
+import tahadeta.example.savedcards.util.Constants
 import tahadeta.example.savedcards.util.biometricManagerUtil.BiometricManagerUtil
 import tahadeta.example.savedcards.util.connectedProfile
-import tahadeta.example.savedcards.util.mySessionProfiles
+import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -70,14 +71,22 @@ class LoginFragment : Fragment() {
         ListenToButton()
 
         // Check if Device have a fingerprint option
-        if (!BiometricManagerUtil.hasBiometricAuthenticator(requireContext())) {
-            hideFingerPrintSection()
-        }
+        if (BiometricManagerUtil.hasBiometricAuthenticator(requireContext())) {
+            if (ModelPreferencesManager.get<Boolean>(Constants.FINGERPRINT_ACTIVATED) == true) {
+                showFingerPrintSection()
+            } else hideFingerPrintSection()
+        } else hideFingerPrintSection()
+
         secretCode = connectedProfile.pin.toString()
 
         binding.fingerprintIv.setOnClickListener {
             BiometricManagerUtil.showPropBiometric(tahadeta.example.savedcards.MainActivity.activityInstance, false)
         }
+    }
+
+    private fun showFingerPrintSection() {
+        binding.fingerprintIv.visibility = View.VISIBLE
+        binding.fingerprintIv.visibility = View.VISIBLE
     }
 
     private fun hideFingerPrintSection() {

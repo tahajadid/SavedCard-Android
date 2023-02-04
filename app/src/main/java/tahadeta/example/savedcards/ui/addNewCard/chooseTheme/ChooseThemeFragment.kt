@@ -21,11 +21,13 @@ import com.google.android.material.textfield.TextInputEditText
 import tahadeta.example.savedcards.R
 import tahadeta.example.savedcards.data.Cards
 import tahadeta.example.savedcards.ui.addNewCard.chooseTheme.adapter.CarouselCardAdapter
-import tahadeta.example.savedcards.util.Constants
+import tahadeta.example.savedcards.util.*
 import tahadeta.example.savedcards.util.Constants.MY_CARDS
 import tahadeta.example.savedcards.util.currentCard
 import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 import tahadeta.example.savedcards.util.mySessionCards
+import tahadeta.example.savedcards.util.numberCardUtil.ScratchCardUtil
+import tahadeta.example.savedcards.util.scanDateCard
 import kotlin.math.abs
 
 class ChooseThemeFragment : Fragment() {
@@ -102,12 +104,17 @@ class ChooseThemeFragment : Fragment() {
         mySessionCards!!.listOfCards.add(currentCard!!)
         ModelPreferencesManager
             .put(mySessionCards as Cards, MY_CARDS)
+
+        scanNumberCard = ""
+        scanDateCard = ""
+        scanNameCard = ""
+
         findNavController().navigate(R.id.homeFragment)
     }
 
     @SuppressLint("SetTextI18n")
     private fun fillInformation() {
-        numberTv.text = currentCard!!.number.toString()
+        numberTv.text = ScratchCardUtil.addSeparatorToNumber(currentCard!!.number.toString())
         nameTv.text = currentCard!!.fullName.toString()
         dateTv.text = currentCard!!.expirationMonth.toString() +
             "/" +

@@ -1,5 +1,6 @@
 package tahadeta.example.savedcards.ui.addNewCard.addInfo
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +12,15 @@ import androidx.navigation.fragment.findNavController
 import tahadeta.example.savedcards.R
 import tahadeta.example.savedcards.data.CardInfo
 import tahadeta.example.savedcards.databinding.FragmentAddInfoCardBinding
+import tahadeta.example.savedcards.util.*
+import tahadeta.example.savedcards.util.Constants.FROM_EDIT
+import tahadeta.example.savedcards.util.Constants.FROM_HOME
+import tahadeta.example.savedcards.util.Constants.FROM_SCAN
 import tahadeta.example.savedcards.util.Constants.MASTERCARD_TYPE
 import tahadeta.example.savedcards.util.Constants.VISACARD_TYPE
 import tahadeta.example.savedcards.util.currentCard
 import tahadeta.example.savedcards.util.numberCardUtil.ScratchCardUtil
+import tahadeta.example.savedcards.util.scanNumberCard
 
 class AddInfoCardFragment : Fragment() {
 
@@ -53,6 +59,11 @@ class AddInfoCardFragment : Fragment() {
     private fun initComponents() {
         ScratchCardUtil.setSeparatorFormatNumber(binding.cardNumberEditText)
 
+        when (comeFrom) {
+            FROM_SCAN -> fillFromScannedData()
+            FROM_EDIT -> fillTheExistingData()
+        }
+
         binding.nextClickView.setOnClickListener {
             checkInfo()
         }
@@ -66,7 +77,38 @@ class AddInfoCardFragment : Fragment() {
             else binding.ribContainer.visibility = View.GONE
         }
 
+        binding.scanImage.setOnClickListener {
+            findNavController().navigate(R.id.scanCardFragment)
+        }
+
         listenToView()
+    }
+
+    private fun fillTheExistingData() {
+        binding.cardNumberEditText.setText(ScratchCardUtil.addSeparatorToNumber(currentCardSelected?.number.toString()))
+        binding.nameEditText.setText(currentCardSelected?.fullName ?: "")
+        binding.monthEditText.setText(currentCardSelected!!.expirationMonth.toString())
+        binding.yearEditText.setText(currentCardSelected!!.expirationYear.toString())
+        binding.cvvEditText.setText(currentCardSelected?.cvv ?: "")
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun fillFromScannedData() {
+        if (!scanNumberCard.equals("")) {
+            binding.cardNumberEditText.setText(
+                ScratchCardUtil.addSeparatorToNumber(scanNumberCard.replace("\\s".toRegex(), ""))
+            )
+        }
+
+        if (!scanNameCard.equals("")) {
+            binding.nameEditText.setText(scanNameCard)
+        }
+
+        if (!scanDateCard.equals("")) {
+            binding.monthEditText.setText(scanDateCard.subSequence(0, 2))
+            binding.yearEditText.setText("20" + scanDateCard.subSequence(3, 5))
+        }
+        comeFrom = FROM_HOME
     }
 
     private fun checkInfo() {
@@ -74,7 +116,6 @@ class AddInfoCardFragment : Fragment() {
         if (binding.cardNumberEditText.text.isNullOrEmpty()) showErrorNumber()
         if (binding.cvvEditText.text.isNullOrEmpty()) showErrorCvv()
         if (binding.monthEditText.text.isNullOrEmpty()) showErrorMonth()
-        if (binding.yearEditText.text.isNullOrEmpty()) showErrorYear()
         if (binding.yearEditText.text.isNullOrEmpty()) showErrorYear()
         if (binding.ribEditText.text.isNullOrEmpty() && binding.checkBox.isChecked) showErrorRib()
         if (!errorCvv && !errorYear && !errorMonth && !errorRib && !errorName && !errorNumber) {

@@ -1,12 +1,12 @@
 package tahadeta.example.savedcards.ui.home.adapters
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import tahadeta.example.savedcards.R
@@ -25,6 +25,7 @@ class ListShortcutAdapter(
         lateinit var title: TextView
         lateinit var icon: ImageView
         lateinit var container: ConstraintLayout
+        lateinit var rightBg: View
 
         /**
          * Show the data in the views
@@ -33,33 +34,30 @@ class ListShortcutAdapter(
             title = itemView.findViewById(R.id.shortcut_title)
             icon = itemView.findViewById(R.id.shortcut_icon)
             container = itemView.findViewById(R.id.container_bg)
+            rightBg = itemView.findViewById(R.id.right_bg)
 
             title.text = item.title
+
             when (item.iconId?.toInt()) {
-                0 -> icon.setImageResource(R.drawable.secure_app_icon)
-                1 -> icon.setImageResource(R.drawable.info_icon)
-                2 -> icon.setImageResource(R.drawable.scanner_card)
+                0 -> icon.setImageResource(R.drawable.scanner_card)
+                1 -> icon.setImageResource(R.drawable.secure_app_icon)
+                2 -> icon.setImageResource(R.drawable.info_icon)
                 else -> icon.setImageResource(R.drawable.info_icon)
             }
 
             if (item.isEnabled == true) {
                 container.setBackgroundResource(R.drawable.shortcut_bg)
-                container.setOnClickListener {
-                    when (item.iconId?.toInt()) {
-                        0 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
-                        1 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.appInfoFragment)
-                        2 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.appInfoFragment)
-                        else -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
-                    }
-                }
             } else {
-                container.setBackgroundResource(R.drawable.shortcuts_disabled_bg)
-                container.setOnClickListener {
-                    Toast.makeText(
-                        tahadeta.example.savedcards.MainActivity.activityInstance,
-                        "Feature available on next release",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                container.setBackgroundResource(R.drawable.set_secret_code_bg)
+                title.setTextColor(Color.parseColor("#e0f7fa"))
+                rightBg.setBackgroundResource(R.drawable.bottom_shortcut_gold_bg)
+            }
+            container.setOnClickListener {
+                when (item.iconId?.toInt()) {
+                    0 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.scanCardFragment)
+                    1 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
+                    2 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.appInfoFragment)
+                    else -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
                 }
             }
         }
