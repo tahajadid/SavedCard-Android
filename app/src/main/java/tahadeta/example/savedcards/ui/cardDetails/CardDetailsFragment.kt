@@ -18,13 +18,17 @@ import androidx.navigation.fragment.findNavController
 import com.example.spicyanimation.SpicyAnimation
 import tahadeta.example.savedcards.R
 import tahadeta.example.savedcards.databinding.FragmentCardDetailsBinding
+import tahadeta.example.savedcards.util.Constants
+import tahadeta.example.savedcards.util.Constants.FROM_EDIT
 import tahadeta.example.savedcards.util.Constants.MASTERCARD_TYPE
+import tahadeta.example.savedcards.util.comeFrom
 import tahadeta.example.savedcards.util.currentCardSelected
 import tahadeta.example.savedcards.util.numberCardUtil.ScratchCardUtil
 
 class CardDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentCardDetailsBinding
+    private var deleteIsHide = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +56,17 @@ class CardDetailsFragment : Fragment() {
 
         SpicyAnimation().fadeToDown(binding.frontPreviewView, 30F, 800)
         SpicyAnimation().fadeToDown(binding.cardTitle, 30F, 800)
+
+        binding.deleteCl.setOnClickListener {
+            if(deleteIsHide) showDeletAndArchive()
+            else hideDeletAndArchive()
+            deleteIsHide = !deleteIsHide
+        }
+
+        binding.editCl.setOnClickListener {
+            comeFrom = FROM_EDIT
+            findNavController().navigate(R.id.addInfoCardFragment)
+        }
 
         Handler().postDelayed({
             binding.backPreviewView.visibility = View.VISIBLE
@@ -84,6 +99,16 @@ class CardDetailsFragment : Fragment() {
         else binding.mastercard.setImageResource(R.drawable.visa_logo)
 
         listenToView()
+    }
+
+    private fun showDeletAndArchive() {
+        binding.archiveCard.visibility = View.VISIBLE
+        binding.deleteCard.visibility = View.VISIBLE
+    }
+
+    private fun hideDeletAndArchive() {
+        binding.archiveCard.visibility = View.GONE
+        binding.deleteCard.visibility = View.GONE
     }
 
     private fun listenToView() {

@@ -7,34 +7,21 @@ object Constants {
     const val MASTERCARD_TYPE = "MASTERCARD_TYPE"
     const val VISACARD_TYPE = "VISACARD_TYPE"
 
-    val LIST_OF_SHORTCUTS = arrayListOf(
-        Shortcut(
-            "Secure the app access",
-            "0",
-            true
-        ),
-        Shortcut(
-            "Application info",
-            "1",
-            true
-        )
-    )
-
     val LIST_OF_LAST_SHORTCUTS = arrayListOf(
         Shortcut(
-            "Secure the app access",
+            "Scan your front card",
             "0",
-            true
+            false
         ),
         Shortcut(
-            "Scan your card",
+            "Secure the app access",
             "1",
-            false
+            true
         ),
         Shortcut(
             "Application info",
             "2",
-            false
+            true
         )
     )
 
@@ -53,4 +40,8 @@ object Constants {
     const val BIOMETRIC_CREDENTIAL = "BIOMETRIC_CREDENTIAL"
     const val FINGERPRINT_ACTIVATED = "FINGERPRINT_ACTIVATED"
     const val ONBOARDING = "ONBOARDING"
+
+    const val FROM_HOME = "FROM_HOME"
+    const val FROM_EDIT = "FROM_EDIT"
+    const val FROM_SCAN = "FROM_SCAN"
 }
