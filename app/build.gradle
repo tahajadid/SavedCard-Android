@@ -81,4 +81,7 @@ dependencies {
     // Add Lottiefile library fr anim JSON
     implementation "com.airbnb.android:lottie:3.4.0"
 
+    // Add google vision services
+    implementation 'com.google.android.gms:play-services-vision:15.0.1'
+
 }
