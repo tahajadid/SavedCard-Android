@@ -9,3 +9,4 @@ In This aplication we implemented a secure way to save the data in a privacy mod
 * Extract Credit card info with the camera using OCR
 * Add Profile attached to numebrs of credit card
 * Secure the application with pin code
+* Add/Delete/Archive Cards
