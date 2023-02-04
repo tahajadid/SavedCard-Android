@@ -10,6 +10,7 @@ import android.view.*
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
@@ -30,6 +31,10 @@ import kotlin.properties.Delegates
 class ScanCardFragment : Fragment() {
 
     private lateinit var binding: FragmentScanCardBinding
+
+    companion object {
+        lateinit var fragmentInstance: ScanCardFragment
+    }
 
     private var mCameraSource by Delegates.notNull<CameraSource>()
     private var textRecognizer by Delegates.notNull<TextRecognizer>()
@@ -57,6 +62,8 @@ class ScanCardFragment : Fragment() {
         )
 
         initComponents()
+
+        fragmentInstance = this
 
         return binding.root
     }
@@ -125,7 +132,7 @@ class ScanCardFragment : Fragment() {
         }
     }
 
-    private fun startCameraSource() {
+    public fun startCameraSource() {
         //  Create text Recognizer
         textRecognizer = TextRecognizer.Builder(MainActivity.activityInstance).build()
 
@@ -197,4 +204,5 @@ class ScanCardFragment : Fragment() {
             }
         }
     }
+
 }

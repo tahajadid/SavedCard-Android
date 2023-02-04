@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import tahadeta.example.savedcards.MainActivity
 import tahadeta.example.savedcards.R
 import tahadeta.example.savedcards.data.Shortcut
 
@@ -54,10 +55,12 @@ class ListShortcutAdapter(
             }
             container.setOnClickListener {
                 when (item.iconId?.toInt()) {
-                    0 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.scanCardFragment)
-                    1 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
-                    2 -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.appInfoFragment)
-                    else -> tahadeta.example.savedcards.MainActivity.navController.navigate(R.id.secureAppFragment)
+                    0 -> {
+                        MainActivity.activityInstance.isCameraPermissionGranted()
+                    }
+                    1 -> MainActivity.navController.navigate(R.id.secureAppFragment)
+                    2 -> MainActivity.navController.navigate(R.id.appInfoFragment)
+                    else -> MainActivity.navController.navigate(R.id.secureAppFragment)
                 }
             }
         }

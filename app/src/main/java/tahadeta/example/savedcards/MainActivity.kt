@@ -1,14 +1,21 @@
 package tahadeta.example.savedcards
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.google.firebase.FirebaseApp
+import tahadeta.example.savedcards.ui.scanCard.ScanCardFragment
 import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
 
 class MainActivity : AppCompatActivity() {
@@ -64,5 +71,45 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.dispatchTouchEvent(ev)
+    }
+
+    @SuppressLint("UseRequireInsteadOfGet")
+    public fun isCameraPermissionGranted(): Boolean {
+        val TAG = "Storage_Permission"
+        if (this!!.checkSelfPermission(Manifest.permission.CAMERA)
+            === PackageManager.PERMISSION_GRANTED
+        ) {
+            Log.v(TAG, "Permission is granted")
+            return true
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA),
+                100
+            )
+            Toast.makeText(applicationContext, "Permission is revoked", Toast.LENGTH_SHORT)
+            return false
+        }
+    }
+
+    // override function on Request Permissions Result
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        val TAG = "Storage_Permission"
+
+        when (requestCode) {
+            100 -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty() &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    navController.navigate(R.id.scanCardFragment)
+                }else Toast.makeText(applicationContext, "Permission is revoked", Toast.LENGTH_SHORT)
+            }
+            else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
     }
 }
