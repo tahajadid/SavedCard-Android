@@ -12,3 +12,7 @@ The benefits of this App:
 * Add Profile attached to numebrs of credit card
 * Secure the application with pin code
 * Add/Delete/Archive Cards
+
+# Go deep in the App
+
+This is some screens of the app 
