@@ -18,3 +18,6 @@ The benefits of this App:
 This is some screens of the app 
 
 ## Onboarding
+
+## Registering
+
