@@ -6,6 +6,8 @@ In This aplication we implemented a secure way to save the data in a privacy mod
 
 # Feature of the application
 
+The benefits of this App: 
+
 * Extract Credit card info with the camera using OCR
 * Add Profile attached to numebrs of credit card
 * Secure the application with pin code
