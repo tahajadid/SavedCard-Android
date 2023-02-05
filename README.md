@@ -21,3 +21,4 @@ This is some screens of the app
 
 ## Registering
 
+## Adding Credit Card
