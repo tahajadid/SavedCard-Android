@@ -96,12 +96,47 @@ class ChooseThemeFragment : Fragment() {
     private fun navigateToSuccess() {
         currentCard?.title = cardTitle.text.toString()
 
+        when (comeFrom) {
+            Constants.FROM_EDIT -> editExistingCard()
+            else -> saveNewCard()
+        }
+    }
+
+    private fun saveNewCard() {
         val myCards = ModelPreferencesManager.get<Cards>(MY_CARDS)
         if (myCards == null) {
             // First init
             mySessionCards = Cards(arrayListOf())
         } else mySessionCards = myCards
         mySessionCards!!.listOfCards.add(currentCard!!)
+        ModelPreferencesManager
+            .put(mySessionCards as Cards, MY_CARDS)
+
+        scanNumberCard = ""
+        scanDateCard = ""
+        scanNameCard = ""
+
+        findNavController().navigate(R.id.homeFragment)
+    }
+
+    private fun editExistingCard() {
+        val myCards = ModelPreferencesManager.get<Cards>(MY_CARDS)
+        if (myCards == null) {
+            // First init
+            mySessionCards = Cards(arrayListOf())
+        } else mySessionCards = myCards
+
+        var indexOfSelectedCard = 0
+        var i = 0
+
+        mySessionCards!!.listOfCards.forEach {
+            if (it.number == currentCard?.number) {
+                indexOfSelectedCard = i
+            }
+            i++
+        }
+
+        mySessionCards!!.listOfCards.set(indexOfSelectedCard, currentCard!!)
         ModelPreferencesManager
             .put(mySessionCards as Cards, MY_CARDS)
 
