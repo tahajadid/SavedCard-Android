@@ -44,7 +44,6 @@ class ThirdOnboardingFragment : Fragment() {
     private fun initComponents() {
         binding.nextBtn.setOnClickListener {
             findNavController().navigate(R.id.creationProfileFragment)
-            ModelPreferencesManager.put<Boolean>(true, Constants.ONBOARDING)
         }
 
         binding.back.setOnClickListener {
