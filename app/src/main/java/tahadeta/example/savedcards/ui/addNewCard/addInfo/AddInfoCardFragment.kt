@@ -90,6 +90,22 @@ class AddInfoCardFragment : Fragment() {
         binding.monthEditText.setText(currentCardSelected!!.expirationMonth.toString())
         binding.yearEditText.setText(currentCardSelected!!.expirationYear.toString())
         binding.cvvEditText.setText(currentCardSelected?.cvv ?: "")
+
+        if (currentCardSelected!!.cardType.equals(MASTERCARD_TYPE)) {
+            cardSelected = MASTERCARD_TYPE
+            binding.masterSelection.setBackgroundResource(R.drawable.type_card_bg_selected)
+            binding.visaSelection.setBackgroundResource(R.drawable.type_card_bg_unselected)
+        } else {
+            cardSelected = VISACARD_TYPE
+            binding.visaSelection.setBackgroundResource(R.drawable.type_card_bg_selected)
+            binding.masterSelection.setBackgroundResource(R.drawable.type_card_bg_unselected)
+        }
+
+        if(!currentCardSelected!!.rib.equals("")){
+            binding.checkBox.isChecked = true
+            binding.ribContainer.visibility = View.VISIBLE
+            binding.ribEditText.setText(currentCardSelected!!.rib.toString())
+        }
     }
 
     @SuppressLint("SetTextI18n")
