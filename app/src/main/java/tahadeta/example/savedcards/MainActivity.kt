@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity() {
             === PackageManager.PERMISSION_GRANTED
         ) {
             Log.v(TAG, "Permission is granted")
+            navController.navigate(R.id.scanCardFragment)
             return true
         } else {
             ActivityCompat.requestPermissions(

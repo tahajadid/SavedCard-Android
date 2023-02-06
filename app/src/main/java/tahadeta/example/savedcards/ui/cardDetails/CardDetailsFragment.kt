@@ -4,6 +4,7 @@ import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -17,18 +18,22 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.spicyanimation.SpicyAnimation
 import tahadeta.example.savedcards.R
+import tahadeta.example.savedcards.data.Cards
 import tahadeta.example.savedcards.databinding.FragmentCardDetailsBinding
-import tahadeta.example.savedcards.util.Constants
+import tahadeta.example.savedcards.util.*
 import tahadeta.example.savedcards.util.Constants.FROM_EDIT
 import tahadeta.example.savedcards.util.Constants.MASTERCARD_TYPE
 import tahadeta.example.savedcards.util.comeFrom
 import tahadeta.example.savedcards.util.currentCardSelected
+import tahadeta.example.savedcards.util.modelPreferencesManager.ModelPreferencesManager
+import tahadeta.example.savedcards.util.mySessionCards
 import tahadeta.example.savedcards.util.numberCardUtil.ScratchCardUtil
 
 class CardDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentCardDetailsBinding
     private var deleteIsHide = true
+    private var shareRibIsHide = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,25 +57,14 @@ class CardDetailsFragment : Fragment() {
 
     private fun initComponent() {
         binding.backPreviewView.visibility = View.INVISIBLE
-        //binding.shareView.visibility = View.INVISIBLE
+        binding.shareView.visibility = View.INVISIBLE
 
         SpicyAnimation().fadeToDown(binding.frontPreviewView, 30F, 800)
         SpicyAnimation().fadeToDown(binding.cardTitle, 30F, 800)
 
-        binding.deleteCl.setOnClickListener {
-            if(deleteIsHide) showDeletAndArchive()
-            else hideDeletAndArchive()
-            deleteIsHide = !deleteIsHide
-        }
-
-        binding.editCl.setOnClickListener {
-            comeFrom = FROM_EDIT
-            findNavController().navigate(R.id.addInfoCardFragment)
-        }
-
         Handler().postDelayed({
             binding.backPreviewView.visibility = View.VISIBLE
-            //binding.shareView.visibility = View.VISIBLE
+            if (!currentCardSelected!!.rib.equals("")) binding.shareView.visibility = View.VISIBLE
         }, 800)
 
         Handler().postDelayed({
@@ -95,19 +89,19 @@ class CardDetailsFragment : Fragment() {
             else -> binding.frontPreviewView.setBackgroundResource(R.drawable.card_bg_six)
         }
 
-        if(currentCardSelected!!.cardType == MASTERCARD_TYPE) binding.mastercard.setImageResource(R.drawable.mastercard_logo)
+        if (currentCardSelected!!.cardType == MASTERCARD_TYPE) binding.mastercard.setImageResource(R.drawable.mastercard_logo)
         else binding.mastercard.setImageResource(R.drawable.visa_logo)
 
         listenToView()
     }
 
     private fun showDeletAndArchive() {
-        binding.archiveCard.visibility = View.VISIBLE
+        // binding.archiveCard.visibility = View.VISIBLE
         binding.deleteCard.visibility = View.VISIBLE
     }
 
     private fun hideDeletAndArchive() {
-        binding.archiveCard.visibility = View.GONE
+        // binding.archiveCard.visibility = View.GONE
         binding.deleteCard.visibility = View.GONE
     }
 
@@ -125,7 +119,71 @@ class CardDetailsFragment : Fragment() {
         }
 
         binding.shareView.setOnClickListener {
+            if (shareRibIsHide) showShareRib()
+            else hideShareRib()
+            shareRibIsHide = !shareRibIsHide
         }
+
+        binding.deleteCard.setOnClickListener {
+            deleteCard()
+        }
+
+        binding.deleteCl.setOnClickListener {
+            if (deleteIsHide) showDeletAndArchive()
+            else hideDeletAndArchive()
+            deleteIsHide = !deleteIsHide
+        }
+
+        binding.editCl.setOnClickListener {
+            comeFrom = FROM_EDIT
+            findNavController().navigate(R.id.addInfoCardFragment)
+        }
+
+        binding.shareRib.setOnClickListener {
+            try {
+                val shareIntent = Intent(Intent.ACTION_SEND)
+                shareIntent.type = "text/plain"
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "RIB Number")
+                var shareMessage = "\n My Rib number: ${currentCardSelected!!.rib} \n"
+                shareMessage =
+                    """
+                $shareMessage
+                    """.trimIndent()
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
+                startActivity(Intent.createChooser(shareIntent, "choose one"))
+            } catch (e: Exception) {
+                // e.toString();
+            }
+        }
+    }
+
+    private fun showShareRib() {
+        binding.shareRib.visibility = View.VISIBLE
+    }
+
+    private fun hideShareRib() {
+        binding.shareRib.visibility = View.GONE
+    }
+
+    private fun deleteCard() {
+        val mySessionCards = ModelPreferencesManager.get<Cards>(Constants.MY_CARDS)
+
+        var indexOfSelectedCard = 0
+        var i = 0
+
+        mySessionCards!!.listOfCards.forEach {
+            if (it.number == currentCardSelected?.number) {
+                indexOfSelectedCard = i
+            }
+            i++
+        }
+
+        mySessionCards!!.listOfCards.removeAt(indexOfSelectedCard)
+        ModelPreferencesManager.put(mySessionCards, Constants.MY_CARDS)
+
+        currentCardSelected = null
+
+        findNavController().navigate(R.id.homeFragment)
     }
 
     @SuppressLint("ResourceType")
