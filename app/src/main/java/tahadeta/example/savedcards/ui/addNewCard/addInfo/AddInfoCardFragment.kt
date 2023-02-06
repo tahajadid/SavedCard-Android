@@ -9,6 +9,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import tahadeta.example.savedcards.MainActivity
 import tahadeta.example.savedcards.R
 import tahadeta.example.savedcards.data.CardInfo
 import tahadeta.example.savedcards.databinding.FragmentAddInfoCardBinding
@@ -78,7 +79,7 @@ class AddInfoCardFragment : Fragment() {
         }
 
         binding.scanImage.setOnClickListener {
-            findNavController().navigate(R.id.scanCardFragment)
+            MainActivity.activityInstance.isCameraPermissionGranted()
         }
 
         listenToView()
