@@ -101,7 +101,7 @@ class AddInfoCardFragment : Fragment() {
             binding.masterSelection.setBackgroundResource(R.drawable.type_card_bg_unselected)
         }
 
-        if(!currentCardSelected!!.rib.equals("")){
+        if (!currentCardSelected!!.rib.equals("")) {
             binding.checkBox.isChecked = true
             binding.ribContainer.visibility = View.VISIBLE
             binding.ribEditText.setText(currentCardSelected!!.rib.toString())
