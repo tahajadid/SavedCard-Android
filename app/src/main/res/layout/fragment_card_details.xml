@@ -239,9 +239,9 @@ tools:context=".ui.cardDetails.CardDetailsFragment">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:visibility="gone"
             android:background="@drawable/upload_theme_bg"
             android:padding="12dp"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/back_preview_view"
             app:layout_constraintTop_toBottomOf="@+id/back_preview_view">
 
@@ -270,6 +270,34 @@ tools:context=".ui.cardDetails.CardDetailsFragment">
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.45" />
 
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/share_rib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/share_rib_bg"
+            android:padding="12dp"
+            android:visibility="gone"
+            android:elevation="6dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="@+id/back_preview_view"
+            app:layout_constraintTop_toBottomOf="@+id/share_view">
+
+
+            <TextView
+                android:id="@+id/share_rib_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/tulisans"
+                android:text="Share RIB Number"
+                android:textColor="@color/cyan_800"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
