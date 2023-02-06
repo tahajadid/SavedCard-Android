@@ -4,7 +4,7 @@ Saved Crads is an Android application developed with Native Android (Kotlin as p
 
 In This aplication we implemented a secure way to save the data in a privacy mode, and to avoid any attack the app works totally on offline mode.
 
-<img src="./screens/saved_cards_screens.jpg" width="600" height="250"/>
+<img src="./screens/saved_cards_screens.jpg" width="600" height="350"/>
 
 # Feature of the application
 
