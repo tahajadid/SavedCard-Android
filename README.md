@@ -1,3 +1,8 @@
+<center>
+<a href="https://play.google.com/store/apps/details?id=tahadeta.example.savedcards">
+<img src="https://github.com/tahajadid/MASCover/blob/main/play_store_icon.png" width="180" height="70"/></a>
+</center>
+
 # SavedCard-Android
 
 Saved Crads is an Android application developed with Native Android (Kotlin as programming language). It's a secure application that can save the information of credit cards in phone without any interface with the internet, so it works in offline mode.
